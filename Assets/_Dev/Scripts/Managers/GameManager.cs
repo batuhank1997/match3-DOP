@@ -1,4 +1,5 @@
 ﻿using _Dev.Scripts.Data;
+using _Dev.Scripts.GameUtilities;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers
@@ -12,8 +13,7 @@ namespace _Dev.Scripts.Managers
 
         private static void Initialize()
         {
-            var board = new Board(8, 8);
-            board.CreateBoard();
+            BoardUtility.CreateBoard(new BoardData(8, 8));
         }
     }
 }
