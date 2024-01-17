@@ -7,12 +7,12 @@ namespace _Dev.Scripts
     {
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         
-        private ItemData _itemData;
+        private Cell _cell;
 
-        public void Initialize(ItemData itemData, int sortingOrder)
+        public void Initialize(Cell cell, int sortingOrder)
         {
-            _itemData = itemData;
-            m_spriteRenderer.sprite = _itemData.SpriteData.Sprite;
+            _cell = cell;
+            m_spriteRenderer.sprite = _cell.ItemData.SpriteData.Sprite;
             m_spriteRenderer.sortingOrder = sortingOrder;
         }
     }

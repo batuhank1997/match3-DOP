@@ -1,5 +1,4 @@
-﻿using _Dev.Scripts.Data;
-using _Dev.Scripts.GameUtilities;
+﻿using System;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers
@@ -8,12 +7,21 @@ namespace _Dev.Scripts.Managers
     {
         private void Awake()
         {
-            Initialize();
+            InitializeSystems();
         }
 
-        private static void Initialize()
+        private void InitializeSystems()
         {
-            BoardUtility.CreateBoard(new BoardData(8, 8));
+            try
+            {
+                InputManager.Instance.Initilize();
+                BoardManager.Instance.Initialize();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Error while initializing Game Manager!: {e}");
+                throw;
+            }
         }
     }
 }

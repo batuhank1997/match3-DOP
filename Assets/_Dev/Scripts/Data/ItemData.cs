@@ -12,9 +12,10 @@ namespace _Dev.Scripts.Data
         }
     }
     
-    public enum ItemType : byte
+    public enum ItemType
     {
-        Invalid = 0,
+        Invalid = -1,
+        Empty = 0,
         Red = 1,
         Blue = 2,
         Green = 3,
