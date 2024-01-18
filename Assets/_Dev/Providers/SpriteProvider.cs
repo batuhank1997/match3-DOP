@@ -14,5 +14,15 @@ namespace _Dev.Providers
         public Sprite Yellow;
         public Sprite Purple;
         public Sprite Pink;
+        
+        public void Initialize()
+        {
+            
+        }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

@@ -8,5 +8,13 @@ namespace _Dev.Providers
     public class PrefabProvider : IGameService
     {
         public CellPresenter CellPresenter;
+        
+        public void Initialize()
+        {
+        }
+
+        public void Dispose()
+        {
+        }
     }
 }

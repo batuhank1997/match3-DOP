@@ -1,10 +1,12 @@
-﻿using System;
+﻿using _Dev.Scripts.System;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private GameSystem m_gameSystem;
+        
         private void Awake()
         {
             InitializeSystems();
@@ -12,16 +14,7 @@ namespace _Dev.Scripts.Managers
 
         private void InitializeSystems()
         {
-            try
-            {
-                InputManager.Instance.Initilize();
-                BoardManager.Instance.Initialize();
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Error while initializing Game Manager!: {e}");
-                throw;
-            }
+            m_gameSystem.Initialize();
         }
     }
 }

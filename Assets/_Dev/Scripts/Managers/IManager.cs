@@ -1,6 +1,6 @@
-﻿namespace _Dev.Interfaces
+﻿namespace _Dev.Scripts.Managers
 {
-    public interface IGameService
+    public interface IManager
     {
         void Initialize();
         void Dispose();

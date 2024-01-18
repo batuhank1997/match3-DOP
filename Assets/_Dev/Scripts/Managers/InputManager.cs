@@ -1,24 +1,33 @@
 using System;
+using _Dev.Interfaces;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.GameUtilities;
-using _Dev.Scripts.Logic;
-using _Dev.Scripts.Utility;
+using _Dev.Scripts.System;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers
 {
-    public class InputManager : Singleton<InputManager>
+    public class InputManager: IManager, ITickOnUpdate
     {
         private Camera _mainCamera;
+        private BoardManager _boardManager;
 
-        public Action<Cell> OnClickOnCell;
-     
-        public void Initilize()
+        public event Action<Cell> OnClickOnCell;
+
+        public void Initialize()
         {
             _mainCamera = Camera.main;
+            _boardManager = GameSystem.Instance.GetManager<BoardManager>();
+            GameSystem.Instance.GetManager<UpdateManager>().Register(this);
         }
 
-        private void Update()
+        public void Dispose()
+        {
+            GameSystem.Instance.GetManager<UpdateManager>().Unregister(this);
+            OnClickOnCell = null;
+        }
+      
+        public void Tick()
         {
             HandleInput();
         }
@@ -35,12 +44,8 @@ namespace _Dev.Scripts.Managers
             if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 return;
                 
-            var cell = GetCellUnderCursor(BoardManager.Instance.BoardData);
+            var cell = GetCellUnderCursor(_boardManager.BoardData);
             if (cell == null) return;
-            
-            var match = MatchSearcher.SearchMatch(cell);
-            
-            Debug.Log($"match size: {match.MatchSize}, match type: {match.MatchType}");
             
             OnClickOnCell?.Invoke(cell);
         }

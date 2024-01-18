@@ -45,5 +45,18 @@ namespace _Dev
 
             m_servicesDictionary.service.Remove(key);
         }
+        
+        public bool IsRegistered<T>()
+        {
+            var key = typeof(T).Name;
+            
+            return m_servicesDictionary.service.ContainsKey(key);
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var service in m_servicesDictionary.service)
+                service.Value.Dispose();
+        }
     }
 }
