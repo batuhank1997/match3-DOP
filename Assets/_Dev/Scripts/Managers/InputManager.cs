@@ -1,6 +1,7 @@
 using System;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.GameUtilities;
+using _Dev.Scripts.Logic;
 using _Dev.Scripts.Utility;
 using UnityEngine;
 
@@ -37,7 +38,9 @@ namespace _Dev.Scripts.Managers
             var cell = GetCellUnderCursor(BoardManager.Instance.BoardData);
             if (cell == null) return;
             
-            Debug.Log(cell.ItemData.ItemType);
+            var match = MatchSearcher.SearchMatch(cell);
+            
+            Debug.Log($"match size: {match.MatchSize}, match type: {match.MatchType}");
             
             OnClickOnCell?.Invoke(cell);
         }
