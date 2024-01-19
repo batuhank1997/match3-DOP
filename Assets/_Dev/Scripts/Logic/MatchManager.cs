@@ -9,8 +9,14 @@ namespace _Dev.Scripts.Logic
     {
         private InputManager _inputManager;
         
+        public MatchManager()
+        {
+            GameSystem.Instance.RegisterManager(this);
+        }
+        
         public void Initialize()
         {
+            Debug.Log($"{GetType()} Initialized!");
             _inputManager = GameSystem.Instance.GetManager<InputManager>();
             Subscribe();
         }
@@ -22,6 +28,7 @@ namespace _Dev.Scripts.Logic
 
         private void Subscribe()
         {
+            _inputManager = GameSystem.Instance.GetManager<InputManager>();
             _inputManager.OnClickOnCell += OnClickOnCell;
         }
         

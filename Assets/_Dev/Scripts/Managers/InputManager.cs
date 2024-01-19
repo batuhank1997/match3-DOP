@@ -13,17 +13,24 @@ namespace _Dev.Scripts.Managers
         private BoardManager _boardManager;
 
         public event Action<Cell> OnClickOnCell;
+        
+        public InputManager()
+        {
+            GameSystem.Instance.RegisterManager(this);
+        }
 
         public void Initialize()
         {
+            Debug.Log($"{GetType()} Initialized!");
             _mainCamera = Camera.main;
             _boardManager = GameSystem.Instance.GetManager<BoardManager>();
-            GameSystem.Instance.GetManager<UpdateManager>().Register(this);
+            UpdateHandler.Instance.Register(this);
         }
 
         public void Dispose()
         {
-            GameSystem.Instance.GetManager<UpdateManager>().Unregister(this);
+            GameSystem.Instance.UnregisterManager<InputManager>();
+            UpdateHandler.Instance.Unregister(this);
             OnClickOnCell = null;
         }
       

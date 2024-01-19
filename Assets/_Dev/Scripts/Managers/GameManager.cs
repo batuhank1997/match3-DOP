@@ -7,7 +7,7 @@ namespace _Dev.Scripts.Managers
     {
         [SerializeField] private GameSystem m_gameSystem;
         
-        private void Awake()
+        private void Start()
         {
             InitializeSystems();
         }

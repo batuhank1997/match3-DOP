@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Dev.Scripts.Logic;
+using System.Reflection;
 using _Dev.Scripts.Managers;
 using _Dev.Scripts.Utility;
 
@@ -12,22 +12,28 @@ namespace _Dev.Scripts.System
 
         public void Initialize()
         {
-            AddManagers();
+            GetManagers();
             InitializeManagers();
+        }
+        
+        private static void GetManagers()
+        {
+            var managers = Assembly.GetAssembly(typeof(IManager)).GetTypes();
+            
+            foreach (var manager in managers)
+            {
+                if (manager.IsInterface || manager.IsAbstract)
+                    continue;
+
+                if (!typeof(IManager).IsAssignableFrom(manager)) continue;
+                Activator.CreateInstance(manager);
+            }
         }
 
         private void InitializeManagers()
         {
             foreach (var manager in _managers)
                 manager.Value.Initialize();
-        }
-
-        private void AddManagers()
-        {
-            _managers.Add(nameof(InputManager), new InputManager());
-            _managers.Add(nameof(BoardManager), new BoardManager());
-            _managers.Add(nameof(MatchManager), new MatchManager());
-            _managers.Add(nameof(UpdateManager), UpdateManager.Instance);
         }
         
         public T GetManager<T>() where T : IManager
