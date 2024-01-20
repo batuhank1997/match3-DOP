@@ -1,10 +1,12 @@
 ﻿using _Dev.Scripts.Data;
-using _Dev.Scripts.Managers;
+using _Dev.Scripts.GameUtilities;
+using _Dev.Scripts.Logic;
 using _Dev.Scripts.System;
 using UnityEngine;
 
-namespace _Dev.Scripts.Logic
+namespace _Dev.Scripts.Managers
 {
+    //todo: check for build if its stripped or not
     public class MatchManager : IManager
     {
         private InputManager _inputManager;
@@ -45,7 +47,7 @@ namespace _Dev.Scripts.Logic
                 return;
 
             foreach (var matchCell in match.Cells)
-                matchCell.Blast();
+                matchCell.BlastCell();
         }
     }
 }

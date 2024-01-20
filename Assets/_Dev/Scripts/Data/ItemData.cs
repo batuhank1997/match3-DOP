@@ -1,3 +1,5 @@
+using _Dev.Scripts.Enums;
+
 namespace _Dev.Scripts.Data
 {
     public readonly struct ItemData
@@ -11,17 +13,5 @@ namespace _Dev.Scripts.Data
             var spriteId = SpriteContainer.GetSpriteIdByItemType(itemType);
             SpriteData = new SpriteData(new SpriteIdWrapper(spriteId));
         }
-    }
-    
-    public enum ItemType
-    {
-        Invalid = -1,
-        Empty = 0,
-        Red = 1,
-        Blue = 2,
-        Green = 3,
-        Yellow = 4,
-        Purple = 5,
-        Pink = 6,
     }
 }

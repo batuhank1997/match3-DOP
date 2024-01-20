@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Dev.Scripts.Enums;
+using UnityEngine;
 
 namespace _Dev.Scripts.Data
 {
@@ -11,11 +12,6 @@ namespace _Dev.Scripts.Data
         {
             ItemData = itemData;
             Coordinates = coordinates;
-        }
-
-        public void Blast()
-        {
-            ItemData = new ItemData(ItemType.Empty);
         }
     }
 }

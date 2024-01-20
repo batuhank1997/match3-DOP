@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using _Dev.Scripts.Data;
+using _Dev.Scripts.Enums;
 using UnityEngine;
 
 namespace _Dev.Scripts

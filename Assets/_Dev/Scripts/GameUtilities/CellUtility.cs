@@ -1,5 +1,5 @@
 ﻿using _Dev.Scripts.Data;
-using Unity.Burst.Intrinsics;
+using _Dev.Scripts.Enums;
 
 namespace _Dev.Scripts.GameUtilities
 {
@@ -10,5 +10,9 @@ namespace _Dev.Scripts.GameUtilities
             return cell.ItemData.ItemType == ItemType.Empty;
         }
 
+        public static void BlastCell(this Cell cell)
+        {
+            cell.ItemData = new ItemData(ItemType.Empty);
+        }
     }
 }
