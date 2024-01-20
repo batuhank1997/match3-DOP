@@ -1,4 +1,5 @@
-﻿using _Dev.Scripts.Data;
+﻿using System.Collections.Generic;
+using _Dev.Scripts.Data;
 
 namespace _Dev.Scripts.Data
 {
@@ -6,11 +7,13 @@ namespace _Dev.Scripts.Data
     {
         public readonly int MatchSize;
         public readonly ItemType MatchType;
+        public readonly List<Cell> Cells;
         
-        public MatchData(int matchSize, ItemType matchType)
+        public MatchData(int matchSize, List<Cell> cells, ItemType matchType)
         {
             MatchSize = matchSize;
             MatchType = matchType;
+            Cells = cells;
         }
     }
 }

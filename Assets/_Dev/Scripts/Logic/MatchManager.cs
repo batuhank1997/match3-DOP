@@ -37,9 +37,15 @@ namespace _Dev.Scripts.Logic
             _inputManager.OnClickOnCell -= OnClickOnCell;
         }
 
-        private void OnClickOnCell(Cell cell)
+        private static void OnClickOnCell(Cell cell)
         {
             var match = MatchSearcher.SearchMatch(cell);
+
+            foreach (var matchCell in match.Cells)
+            {
+                Debug.Log($"match cell: {matchCell.Coordinates}");
+            }
+
             Debug.Log($"match size: {match.MatchSize}, match type: {match.MatchType}");
         }
     }

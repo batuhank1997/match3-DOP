@@ -12,15 +12,15 @@ namespace _Dev.Scripts.Logic
         public static MatchData SearchMatch(Cell clickedCell)
         {
             _matchSizeCounter = 0;
-            var match = CheckNeighbours(clickedCell);
             _traversedCells.Clear();
-
+            
+            var match = CheckNeighbours(clickedCell);
             return match;
         }
 
         private static MatchData CheckNeighbours(Cell cell)
         {
-            var match = new MatchData(0, cell.ItemData.ItemType);
+            var match = new MatchData(0, _traversedCells, cell.ItemData.ItemType);
 
             var neighbours = BoardUtility.GetNeighbours(cell);
 
@@ -36,7 +36,7 @@ namespace _Dev.Scripts.Logic
                 CheckNeighbours(neighbourCell);
             }
 
-            return new MatchData(_matchSizeCounter, match.MatchType);
+            return new MatchData(_matchSizeCounter, _traversedCells, match.MatchType);
         }
 
     }
