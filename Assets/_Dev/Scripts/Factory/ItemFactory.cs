@@ -3,7 +3,7 @@ using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
 using UnityEngine;
 
-namespace _Dev.Scripts
+namespace _Dev.Scripts.Factory
 {
     public static class ItemFactory
     {

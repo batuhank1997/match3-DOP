@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using _Dev.Providers;
 using _Dev.Scripts.Data;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
-namespace _Dev.Scripts.GameUtilities
+namespace _Dev.Scripts.Factory
 {
     public class BoardFactory
     {
