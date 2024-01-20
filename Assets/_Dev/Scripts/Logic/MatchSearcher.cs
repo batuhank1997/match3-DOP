@@ -22,7 +22,7 @@ namespace _Dev.Scripts.Logic
         {
             var match = new MatchData(0, _traversedCells, cell.ItemData.ItemType);
 
-            var neighbours = BoardUtility.GetNeighbours(cell);
+            var neighbours = BoardUtility.GetAllNeighbours(cell);
 
             foreach (var neighbourCell in neighbours)
             {

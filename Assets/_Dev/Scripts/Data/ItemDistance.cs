@@ -1,12 +1,25 @@
-﻿namespace _Dev.Scripts.Data
+﻿using _Dev.Interfaces;
+using _Dev.Scripts.Managers;
+using _Dev.Scripts.System;
+using UnityEngine;
+
+namespace _Dev.Scripts.Data
 {
-    public class ItemDistance
+    public class ItemDistance : ITickOnUpdate
     {
         public float Value;
         
         public ItemDistance(float value)
         {
             Value = value;
+            UpdateHandler.Instance.Register(this);
+        }
+        
+        public void Tick()
+        {
+            if (Value <= 0.5f) return;
+
+            Decrease(Time.deltaTime * 10f);
         }
         
         public void Increase(float value)

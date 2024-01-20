@@ -1,6 +1,4 @@
 using _Dev.Scripts.Data;
-using _Dev.Scripts.GameUtilities;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +9,7 @@ namespace _Dev.Scripts.Presenters
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private bool m_debug;
         [SerializeField] private TextMeshPro m_debugText;
+        [SerializeField] private float m_debugYOffset;
         
         private Cell _cell;
 
@@ -40,21 +39,13 @@ namespace _Dev.Scripts.Presenters
             UpdateItemPosition();
         }
 
-        private void AnimateCellBlast()
-        {
-            m_spriteRenderer.transform.DOScale(1.1f, 0.1f).OnComplete(() =>
-            {
-                m_spriteRenderer.transform.localScale = Vector3.one;
-                m_spriteRenderer.sprite = SpriteContainer.GetSpriteByItemType(_cell.ItemData.ItemType);
-            });
-        }
-
         private void UpdateItemPosition()
         {
             var spriteTransform = m_spriteRenderer.transform;
             var localPos = spriteTransform.localPosition;
-            
-            localPos = new Vector3(localPos.x, _cell.ItemDistance.Value, localPos.z);
+            var targetYPos = _cell.ItemDistance.Value + m_debugYOffset;
+
+            localPos = new Vector3(localPos.x, targetYPos, localPos.z);
             
             spriteTransform.localPosition = localPos;
         }

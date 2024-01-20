@@ -2,6 +2,7 @@
 using _Dev.Scripts.Data;
 using _Dev.Scripts.Managers;
 using _Dev.Scripts.System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Dev.Scripts.GameUtilities
@@ -12,7 +13,7 @@ namespace _Dev.Scripts.GameUtilities
         {
             var boardManager = GameSystem.Instance.GetManager<BoardManager>();
             
-            if (boardManager.BoardData.Cells.TryGetValue(new Vector2(x, y), out var c))
+            if (boardManager.BoardData.Cells.TryGetValue(new Vector2Int(x, y), out var c))
             {
                 cell = c;
                 return true;
@@ -22,25 +23,90 @@ namespace _Dev.Scripts.GameUtilities
             return false;
         }
         
-        public static IEnumerable<Cell> GetNeighbours(Cell cell)
+        public static IEnumerable<Cell> GetAllNeighbours(Cell cell)
         {
             var neighbours = new List<Cell>();
 
-            var leftNeighbour = new Vector2(cell.Coordinates.x - 1, cell.Coordinates.y);
-            var rightNeighbour = new Vector2(cell.Coordinates.x + 1, cell.Coordinates.y);
-            var topNeighbour = new Vector2(cell.Coordinates.x, cell.Coordinates.y + 1);
-            var bottomNeighbour = new Vector2(cell.Coordinates.x, cell.Coordinates.y - 1);
+            var leftNeighbour = new Vector2Int(cell.Coordinates.x - 1, cell.Coordinates.y);
+            var rightNeighbour = new Vector2Int(cell.Coordinates.x + 1, cell.Coordinates.y);
+            var topNeighbour = new Vector2Int(cell.Coordinates.x, cell.Coordinates.y + 1);
+            var bottomNeighbour = new Vector2Int(cell.Coordinates.x, cell.Coordinates.y - 1);
 
-            if(TryGetCell((int)leftNeighbour.x, (int)leftNeighbour.y, out var neighbourL))
+            if(TryGetCell(leftNeighbour.x, leftNeighbour.y, out var neighbourL))
                 neighbours.Add(neighbourL);
-            if(TryGetCell((int)rightNeighbour.x, (int)rightNeighbour.y, out var neighbourR))
+            if(TryGetCell(rightNeighbour.x, rightNeighbour.y, out var neighbourR))
                 neighbours.Add(neighbourR);
-            if(TryGetCell((int)topNeighbour.x, (int)topNeighbour.y, out var neighbourT))
+            if(TryGetCell(topNeighbour.x, topNeighbour.y, out var neighbourT))
                 neighbours.Add(neighbourT);
-            if(TryGetCell((int)bottomNeighbour.x, (int)bottomNeighbour.y, out var neighbourB))
+            if(TryGetCell(bottomNeighbour.x, bottomNeighbour.y, out var neighbourB))
                 neighbours.Add(neighbourB);
 
             return neighbours;
+        }
+        
+        public static bool TryGetNeighbourByDirection(Cell cell, Vector2Int direction, out Cell neighbour)
+        {
+            var neighbourCoordinates = new Vector2Int(cell.Coordinates.x + direction.x, cell.Coordinates.y + direction.y);
+            
+            if (TryGetCell(neighbourCoordinates.x, neighbourCoordinates.y, out var n))
+            {
+                neighbour = n;
+                return true;
+            }
+
+            neighbour = null;
+            return false;
+        }
+
+        public static Cell GetLastEmptyCellOnColumn(Cell cell)
+        {
+            while (true)
+            {
+                //todo fix this
+                if (!TryGetNeighbourByDirection(cell, Vector2Int.down, out var belowCell)) 
+                    return cell;
+
+                if (belowCell.IsEmpty())
+                    cell = belowCell;
+                else
+                    return cell;
+            }
+        }
+
+        public static List<Cell> GetBlastedCellsTopNeighbours(List<Cell> blastedCells)
+        {
+            var blastedCellsTopNeighbours = new List<Cell>();
+
+            foreach (var blastedCell in blastedCells)
+            {
+                var topNeighbour = new Vector2(blastedCell.Coordinates.x, blastedCell.Coordinates.y + 1);
+                
+                if (TryGetCell((int) topNeighbour.x, (int) topNeighbour.y, out var neighbourT) && !neighbourT.IsEmpty())
+                    blastedCellsTopNeighbours.Add(neighbourT);
+            }
+
+            return blastedCellsTopNeighbours;
+        }
+
+        public static List<Cell> GetAllTopCellsInOrder(Cell cell)
+        {
+            var topCells = new List<Cell>();
+
+            var count = GameSystem.Instance.GetManager<BoardManager>().BoardData.Y - cell.Coordinates.y;
+            
+            for (var i = 0; i < count; i++)
+            {
+                if (TryGetCell(cell.Coordinates.x, cell.Coordinates.y + i, out var c))
+                {
+                    topCells.Add(c);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return topCells;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using _Dev.Scripts.Data;
+﻿using System;
+using System.Collections.Generic;
+using _Dev.Scripts.Data;
 using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.Logic;
 using _Dev.Scripts.System;
@@ -10,6 +12,7 @@ namespace _Dev.Scripts.Managers
     public class MatchManager : IManager
     {
         private InputManager _inputManager;
+        public static event Action<List<Cell>> OnCellsBlasted; 
         
         public MatchManager()
         {
@@ -48,6 +51,8 @@ namespace _Dev.Scripts.Managers
 
             foreach (var matchCell in match.Cells)
                 matchCell.BlastCell();
+            
+            OnCellsBlasted?.Invoke(match.Cells);
         }
     }
 }

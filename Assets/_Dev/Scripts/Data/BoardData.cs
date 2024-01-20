@@ -8,9 +8,9 @@ namespace _Dev.Scripts.Data
         public readonly int X;
         public readonly int Y;
 
-        public readonly Dictionary<Vector2, Cell> Cells;
+        public readonly Dictionary<Vector2Int, Cell> Cells;
         
-        public BoardData(int x, int y, Dictionary<Vector2, Cell> cells)
+        public BoardData(int x, int y, Dictionary<Vector2Int, Cell> cells)
         {
             X = x;
             Y = y;
