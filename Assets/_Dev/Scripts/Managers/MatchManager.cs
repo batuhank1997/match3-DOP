@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace _Dev.Scripts.Managers
 {
-    //todo: check for build if its stripped or not
     public class MatchManager : IManager
     {
         private InputManager _inputManager;

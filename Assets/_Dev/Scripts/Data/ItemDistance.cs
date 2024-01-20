@@ -1,6 +1,5 @@
 ﻿using _Dev.Interfaces;
 using _Dev.Scripts.Managers;
-using _Dev.Scripts.System;
 using UnityEngine;
 
 namespace _Dev.Scripts.Data
@@ -27,19 +26,9 @@ namespace _Dev.Scripts.Data
             Value += value;
         }
         
-        public void Decrease(float value)
+        private void Decrease(float value)
         {
             Value -= value;
-        }
-        
-        public void Reset()
-        {
-            Value = 0;
-        }
-        
-        public bool IsZero()
-        {
-            return Value == 0;
         }
     }
 }

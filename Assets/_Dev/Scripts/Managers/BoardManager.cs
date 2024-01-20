@@ -5,7 +5,6 @@ using _Dev.Scripts.Factory;
 using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.System;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace _Dev.Scripts.Managers
 {
@@ -44,13 +43,11 @@ namespace _Dev.Scripts.Managers
                 var columnList = BoardUtility.GetAllTopCellsInOrder(cell);
                 
                 foreach (var columnCell in columnList)
-                {
                     FallItem(columnCell);
-                }
             }
         }
 
-        private void FallItem(Cell cell)
+        private static void FallItem(Cell cell)
         {
             var targetCell = BoardUtility.GetLastEmptyCellOnColumn(cell);
             targetCell.ItemData = new ItemData(cell.ItemData.ItemType);

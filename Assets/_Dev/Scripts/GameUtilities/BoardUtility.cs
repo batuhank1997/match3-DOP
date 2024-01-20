@@ -62,7 +62,6 @@ namespace _Dev.Scripts.GameUtilities
         {
             while (true)
             {
-                //todo fix this
                 if (!TryGetNeighbourByDirection(cell, Vector2Int.down, out var belowCell)) 
                     return cell;
 
@@ -97,13 +96,9 @@ namespace _Dev.Scripts.GameUtilities
             for (var i = 0; i < count; i++)
             {
                 if (TryGetCell(cell.Coordinates.x, cell.Coordinates.y + i, out var c))
-                {
                     topCells.Add(c);
-                }
                 else
-                {
                     break;
-                }
             }
 
             return topCells;
