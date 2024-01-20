@@ -15,7 +15,7 @@ namespace _Dev.Scripts.Data
 
         public void Blast()
         {
-            // ItemData = new ItemData(ItemType.Invalid, new SpriteData(new SpriteWrapper(null)));
+            ItemData = new ItemData(ItemType.Empty);
         }
     }
 }

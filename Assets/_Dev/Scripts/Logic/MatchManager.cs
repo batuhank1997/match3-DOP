@@ -41,13 +41,11 @@ namespace _Dev.Scripts.Logic
         {
             var match = MatchSearcher.SearchMatch(cell);
 
-            foreach (var matchCell in match.Cells)
-            {
-                Debug.Log($"match cell: {matchCell.Coordinates}");
-                matchCell.Blast();
-            }
+            if (match.MatchSize < 3)
+                return;
 
-            Debug.Log($"match size: {match.MatchSize}, match type: {match.MatchType}");
+            foreach (var matchCell in match.Cells)
+                matchCell.Blast();
         }
     }
 }

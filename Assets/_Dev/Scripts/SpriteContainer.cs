@@ -43,11 +43,6 @@ namespace _Dev.Scripts
             {ItemType.Purple, SpriteId.Purple},
             {ItemType.Pink, SpriteId.Pink},
         };
-
-        public static Sprite GetSpriteBySpriteId(SpriteId spriteId)
-        {
-            return _spriteDataBySpriteId[spriteId];
-        }
         
         public static Sprite GetSpriteByItemType(ItemType itemType)
         {
