@@ -44,6 +44,7 @@ namespace _Dev.Scripts.Logic
             foreach (var matchCell in match.Cells)
             {
                 Debug.Log($"match cell: {matchCell.Coordinates}");
+                matchCell.Blast();
             }
 
             Debug.Log($"match size: {match.MatchSize}, match type: {match.MatchType}");

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Dev.Scripts.Data
 {
@@ -12,6 +11,11 @@ namespace _Dev.Scripts.Data
         {
             ItemData = itemData;
             Coordinates = coordinates;
+        }
+
+        public void Blast()
+        {
+            // ItemData = new ItemData(ItemType.Invalid, new SpriteData(new SpriteWrapper(null)));
         }
     }
 }

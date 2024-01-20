@@ -15,7 +15,7 @@ namespace _Dev.Scripts.Presenters
         public void Initialize(Cell cell, int sortingOrder)
         {
             _cell = cell;
-            m_spriteRenderer.sprite = _cell.ItemData.SpriteData.Sprite;
+            m_spriteRenderer.sprite = SpriteContainer.GetSpriteBySpriteId(_cell.ItemData.SpriteData.SpriteId.Id);
             m_spriteRenderer.sortingOrder = sortingOrder;
             gameObject.name = $"Cell {_cell.Coordinates.x} : {_cell.Coordinates.y}";
             

@@ -5,10 +5,11 @@ namespace _Dev.Scripts.Data
         public readonly ItemType ItemType;
         public readonly SpriteData SpriteData;
         
-        public ItemData(ItemType itemType, SpriteData sprite)
+        public ItemData(ItemType itemType)
         {
             ItemType = itemType;
-            SpriteData = new SpriteData(sprite.Sprite);
+            var spriteId = SpriteContainer.GetSpriteIdByItemType(itemType);
+            SpriteData = new SpriteData(new SpriteIdWrapper(spriteId));
         }
     }
     

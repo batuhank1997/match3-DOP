@@ -21,10 +21,9 @@ namespace _Dev.Scripts.GameUtilities
                 for (var y = 0; y < height; y++)
                 {
                     var position = startPosition + new Vector3(x, y);
-                    var itemType = (ItemType) Enum.GetValues(typeof(ItemType)).GetValue(Random.Range(1, 7));
                     var cellPresenter = Object.Instantiate(cellPresenterPrefab, position, Quaternion.identity);
                     var pos = new Vector2(x, y);
-                    var cell = new Cell(ItemContainer.GetItemDataByType(itemType), pos);
+                    var cell = new Cell(ItemFactory.CreateRandomItem(), pos);
                     cellDictionary.Add(pos, cell);
                     
                     cellPresenter.Initialize(cell, x + y);
