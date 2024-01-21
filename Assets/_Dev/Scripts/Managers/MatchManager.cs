@@ -20,7 +20,6 @@ namespace _Dev.Scripts.Managers
         
         public void Initialize()
         {
-            Debug.Log($"{GetType()} Initialized!");
             _inputManager = GameSystem.Instance.GetManager<InputManager>();
             Subscribe();
         }

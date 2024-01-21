@@ -21,7 +21,6 @@ namespace _Dev.Scripts.Managers
 
         public void Initialize()
         {
-            Debug.Log($"{GetType()} Initialized!");
             _boardFactory = new BoardFactory();
             BoardData = _boardFactory.CreateBoard(8, 8);
             MatchManager.OnCellsBlasted += OnCellsBlasted;

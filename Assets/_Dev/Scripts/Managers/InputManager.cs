@@ -21,7 +21,6 @@ namespace _Dev.Scripts.Managers
 
         public void Initialize()
         {
-            Debug.Log($"{GetType()} Initialized!");
             _mainCamera = Camera.main;
             _boardManager = GameSystem.Instance.GetManager<BoardManager>();
             UpdateHandler.Instance.Register(this);

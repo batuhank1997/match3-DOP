@@ -9,11 +9,6 @@ namespace _Dev.Scripts.Managers
     {
         private readonly List<ITickOnUpdate> _tickingObjects = new List<ITickOnUpdate>();
 
-        public void Awake()
-        {
-            Debug.Log($"{GetType()} Initialized!");
-        }
-
         public void OnDestroy()
         {
             _tickingObjects.Clear();
