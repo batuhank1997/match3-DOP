@@ -9,7 +9,7 @@ namespace _Dev.Scripts.Managers
     {
         private readonly List<ITickOnUpdate> _tickingObjects = new List<ITickOnUpdate>();
 
-        public void OnDestroy()
+        public void OnDisable()
         {
             _tickingObjects.Clear();
         }

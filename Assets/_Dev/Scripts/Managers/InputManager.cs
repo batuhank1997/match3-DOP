@@ -28,8 +28,6 @@ namespace _Dev.Scripts.Managers
 
         public void Dispose()
         {
-            GameSystem.Instance.UnregisterManager<InputManager>();
-            UpdateHandler.Instance.Unregister(this);
             OnClickOnCell = null;
         }
       

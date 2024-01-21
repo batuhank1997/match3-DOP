@@ -28,7 +28,6 @@ namespace _Dev.Scripts.Managers
         
         public void Dispose()
         {
-            GameSystem.Instance.UnregisterManager<BoardManager>();
             MatchManager.OnCellsBlasted -= OnCellsBlasted;
             _boardFactory = null;
         }

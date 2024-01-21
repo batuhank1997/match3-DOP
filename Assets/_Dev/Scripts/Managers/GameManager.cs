@@ -1,4 +1,5 @@
-﻿using _Dev.Scripts.System;
+﻿using System;
+using _Dev.Scripts.System;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers
@@ -15,6 +16,11 @@ namespace _Dev.Scripts.Managers
         private void InitializeSystems()
         {
             m_gameSystem.Initialize();
+        }
+
+        private void OnDestroy()
+        {
+            m_gameSystem.Dispose();
         }
     }
 }

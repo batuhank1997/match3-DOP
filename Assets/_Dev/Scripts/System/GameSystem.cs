@@ -36,6 +36,15 @@ namespace _Dev.Scripts.System
                 manager.Value.Initialize();
         }
         
+        
+        public void Dispose()
+        {
+            foreach (var manager in _managers)
+                manager.Value.Dispose();
+            
+            _managers.Clear();
+        }
+        
         public T GetManager<T>() where T : IManager
         {
             var key = typeof(T).Name;
@@ -65,13 +74,6 @@ namespace _Dev.Scripts.System
 
             _managers.Remove(key);
         }
-        
-        public void Dispose()
-        {
-            foreach (var manager in _managers)
-                manager.Value.Dispose();
-            
-            _managers.Clear();
-        }
+
     }
 }
