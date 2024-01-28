@@ -27,7 +27,7 @@ namespace _Dev.Scripts.Managers
         private void Update()
         {
             foreach (var updatingObject in _tickingObjects)
-                updatingObject.Tick();
+                updatingObject.Tick(Time.deltaTime);
         }
 
     }

@@ -31,7 +31,7 @@ namespace _Dev.Scripts.Managers
             OnClickOnCell = null;
         }
       
-        public void Tick()
+        public void Tick(float time)
         {
             HandleInput();
         }
@@ -62,7 +62,7 @@ namespace _Dev.Scripts.Managers
             var x = (int)Mathf.Abs(zeroPos.x - mousePos.x);
             var y = (int)Mathf.Abs(zeroPos.y - mousePos.y);
             
-            return BoardUtility.TryGetCell(x, y, out var cell) ? cell : null;
+            return BoardUtility.GetCell(x, y, out var cell) ? cell : null;
         }
     }
 }

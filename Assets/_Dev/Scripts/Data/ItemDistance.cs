@@ -1,6 +1,5 @@
 ﻿using _Dev.Interfaces;
 using _Dev.Scripts.Managers;
-using UnityEngine;
 
 namespace _Dev.Scripts.Data
 {
@@ -14,11 +13,11 @@ namespace _Dev.Scripts.Data
             UpdateHandler.Instance.Register(this);
         }
         
-        public void Tick()
+        public void Tick(float time)
         {
             if (Value <= 0.5f) return;
 
-            Decrease(Time.deltaTime * 10f);
+            Decrease(time * 10f);
         }
         
         public void Increase(float value)
@@ -26,9 +25,20 @@ namespace _Dev.Scripts.Data
             Value += value;
         }
         
+        public void Set(float value)
+        {
+            Value = value;
+        }
+                
+        public void Reset()
+        {
+            Value = InGameConstants.Item.StartingItemDistance;
+        }
+        
         private void Decrease(float value)
         {
             Value -= value;
         }
+
     }
 }

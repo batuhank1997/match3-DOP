@@ -36,7 +36,6 @@ namespace _Dev.Scripts.System
                 manager.Value.Initialize();
         }
         
-        
         public void Dispose()
         {
             foreach (var manager in _managers)

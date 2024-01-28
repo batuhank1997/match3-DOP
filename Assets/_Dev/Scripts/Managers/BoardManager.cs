@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Factory;
@@ -34,8 +36,14 @@ namespace _Dev.Scripts.Managers
         
         private void OnCellsBlasted(List<Cell> blastedCells)
         {
-            var topCells = BoardUtility.GetBlastedCellsTopNeighbours(blastedCells);
+            FallItemsOnTop(blastedCells);
+            UpdateHandler.Instance.StartCoroutine(FillBoardWithNewItems(blastedCells));
+        }
 
+        private static void FallItemsOnTop(List<Cell> blastedCells)
+        {
+            var topCells = BoardUtility.GetBlastedCellsTopNeighbours(blastedCells);
+                
             foreach (var cell in topCells)
             {
                 var columnList = BoardUtility.GetAllTopCellsInOrder(cell);
@@ -47,10 +55,24 @@ namespace _Dev.Scripts.Managers
 
         private static void FallItem(Cell cell)
         {
-            var targetCell = BoardUtility.GetLastEmptyCellOnColumn(cell);
+            var targetCell = BoardUtility.GetLastEmptyCellBelow(cell);
             targetCell.ItemData = new ItemData(cell.ItemData.ItemType);
             targetCell.ItemDistance.Increase(cell.Coordinates.y - targetCell.Coordinates.y);
             cell.ItemData = new ItemData(ItemType.Empty);
+        }
+
+        private IEnumerator FillBoardWithNewItems(List<Cell> blastedCell)
+        {
+            blastedCell = blastedCell.OrderBy(c => c.Coordinates.y).ToList();
+            
+            foreach (var cell in blastedCell)
+            {
+                yield return new WaitForSeconds(0.1f);
+                BoardUtility.GetCell(cell.Coordinates.x, BoardData.Y - 1, out var spawnCell);
+                spawnCell.ItemData = ItemFactory.CreateRandomItem();
+                spawnCell.ItemDistance.Reset();
+                FallItem(spawnCell);
+            }
         }
     }
 }

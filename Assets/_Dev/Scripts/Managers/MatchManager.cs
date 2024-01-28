@@ -4,7 +4,6 @@ using _Dev.Scripts.Data;
 using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.Logic;
 using _Dev.Scripts.System;
-using UnityEngine;
 
 namespace _Dev.Scripts.Managers
 {
@@ -44,7 +43,7 @@ namespace _Dev.Scripts.Managers
         {
             var match = MatchSearcher.SearchMatch(cell);
 
-            if (match.MatchSize < 3)
+            if (match.MatchSize < 2)
                 return;
 
             foreach (var matchCell in match.Cells)

@@ -53,6 +53,7 @@ namespace _Dev.Scripts.Presenters
         private void Update()
         {
             UpdateVisuals();
+            m_debugText.text = _cell.ItemData.ItemType.ToString();
         }
     }
 }

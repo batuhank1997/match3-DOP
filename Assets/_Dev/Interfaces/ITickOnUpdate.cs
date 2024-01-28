@@ -2,6 +2,6 @@
 {
     public interface ITickOnUpdate
     {
-        void Tick();
+        void Tick(float time);
     }
 }

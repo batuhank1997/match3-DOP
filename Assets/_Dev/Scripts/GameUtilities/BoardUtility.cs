@@ -2,25 +2,24 @@
 using _Dev.Scripts.Data;
 using _Dev.Scripts.Managers;
 using _Dev.Scripts.System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Dev.Scripts.GameUtilities
 {
     public static class BoardUtility
     {
-        public static bool TryGetCell(int x, int y, out Cell cell)
+        public static bool GetCell(int x, int y, out Cell cell)
         {
             var boardManager = GameSystem.Instance.GetManager<BoardManager>();
-            
-            if (boardManager.BoardData.Cells.TryGetValue(new Vector2Int(x, y), out var c))
+
+            if (x < 0 || x >= boardManager.BoardData.X || y < 0 || y >= boardManager.BoardData.Y)
             {
-                cell = c;
-                return true;
+                cell = null;
+                return false;
             }
         
-            cell = null;
-            return false;
+            cell = boardManager.BoardData.Cells[x][y];
+            return true;
         }
         
         public static IEnumerable<Cell> GetAllNeighbours(Cell cell)
@@ -32,23 +31,23 @@ namespace _Dev.Scripts.GameUtilities
             var topNeighbour = new Vector2Int(cell.Coordinates.x, cell.Coordinates.y + 1);
             var bottomNeighbour = new Vector2Int(cell.Coordinates.x, cell.Coordinates.y - 1);
 
-            if(TryGetCell(leftNeighbour.x, leftNeighbour.y, out var neighbourL))
+            if(GetCell(leftNeighbour.x, leftNeighbour.y, out var neighbourL))
                 neighbours.Add(neighbourL);
-            if(TryGetCell(rightNeighbour.x, rightNeighbour.y, out var neighbourR))
+            if(GetCell(rightNeighbour.x, rightNeighbour.y, out var neighbourR))
                 neighbours.Add(neighbourR);
-            if(TryGetCell(topNeighbour.x, topNeighbour.y, out var neighbourT))
+            if(GetCell(topNeighbour.x, topNeighbour.y, out var neighbourT))
                 neighbours.Add(neighbourT);
-            if(TryGetCell(bottomNeighbour.x, bottomNeighbour.y, out var neighbourB))
+            if(GetCell(bottomNeighbour.x, bottomNeighbour.y, out var neighbourB))
                 neighbours.Add(neighbourB);
 
             return neighbours;
         }
         
-        public static bool TryGetNeighbourByDirection(Cell cell, Vector2Int direction, out Cell neighbour)
+        private static bool TryGetNeighbourByDirection(Cell cell, Vector2Int direction, out Cell neighbour)
         {
             var neighbourCoordinates = new Vector2Int(cell.Coordinates.x + direction.x, cell.Coordinates.y + direction.y);
             
-            if (TryGetCell(neighbourCoordinates.x, neighbourCoordinates.y, out var n))
+            if (GetCell(neighbourCoordinates.x, neighbourCoordinates.y, out var n))
             {
                 neighbour = n;
                 return true;
@@ -58,7 +57,7 @@ namespace _Dev.Scripts.GameUtilities
             return false;
         }
 
-        public static Cell GetLastEmptyCellOnColumn(Cell cell)
+        public static Cell GetLastEmptyCellBelow(Cell cell)
         {
             while (true)
             {
@@ -80,7 +79,7 @@ namespace _Dev.Scripts.GameUtilities
             {
                 var topNeighbour = new Vector2(blastedCell.Coordinates.x, blastedCell.Coordinates.y + 1);
                 
-                if (TryGetCell((int) topNeighbour.x, (int) topNeighbour.y, out var neighbourT) && !neighbourT.IsEmpty())
+                if (GetCell((int) topNeighbour.x, (int) topNeighbour.y, out var neighbourT) && !neighbourT.IsEmpty())
                     blastedCellsTopNeighbours.Add(neighbourT);
             }
 
@@ -95,7 +94,7 @@ namespace _Dev.Scripts.GameUtilities
             
             for (var i = 0; i < count; i++)
             {
-                if (TryGetCell(cell.Coordinates.x, cell.Coordinates.y + i, out var c))
+                if (GetCell(cell.Coordinates.x, cell.Coordinates.y + i, out var c))
                     topCells.Add(c);
                 else
                     break;
@@ -103,5 +102,6 @@ namespace _Dev.Scripts.GameUtilities
 
             return topCells;
         }
+
     }
 }
