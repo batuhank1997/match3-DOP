@@ -56,9 +56,12 @@ namespace _Dev.Scripts.Managers
         private static void FallItem(Cell cell)
         {
             var targetCell = BoardUtility.GetLastEmptyCellBelow(cell);
-            targetCell.ItemData = new ItemData(cell.ItemData.ItemType);
+            targetCell.ItemData = cell.ItemData;
             targetCell.ItemDistance.Increase(cell.Coordinates.y - targetCell.Coordinates.y);
+            if (cell == targetCell) return;
+
             cell.ItemData = new ItemData(ItemType.Empty);
+            cell.ItemDistance.Reset();
         }
 
         private IEnumerator FillBoardWithNewItems(List<Cell> blastedCell)
@@ -67,12 +70,14 @@ namespace _Dev.Scripts.Managers
             
             foreach (var cell in blastedCell)
             {
-                yield return new WaitForSeconds(0.1f);
                 BoardUtility.GetCell(cell.Coordinates.x, BoardData.Y - 1, out var spawnCell);
                 spawnCell.ItemData = ItemFactory.CreateRandomItem();
                 spawnCell.ItemDistance.Reset();
                 FallItem(spawnCell);
             }
+            
+            
+            yield return null;
         }
     }
 }
