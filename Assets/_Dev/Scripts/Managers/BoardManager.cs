@@ -15,6 +15,7 @@ namespace _Dev.Scripts.Managers
         public BoardData BoardData { get; private set; }
         
         private BoardFactory _boardFactory;
+        private readonly WaitForSeconds _itemCreatingDelay = new (0.1f);
 
         public BoardManager()
         {
@@ -58,6 +59,7 @@ namespace _Dev.Scripts.Managers
             var targetCell = BoardUtility.GetLastEmptyCellBelow(cell);
             targetCell.ItemData = cell.ItemData;
             targetCell.ItemDistance.Increase(cell.Coordinates.y - targetCell.Coordinates.y);
+            
             if (cell == targetCell) return;
 
             cell.ItemData = new ItemData(ItemType.Empty);
@@ -70,9 +72,11 @@ namespace _Dev.Scripts.Managers
             
             foreach (var cell in blastedCell)
             {
+                yield return _itemCreatingDelay;
+                
                 BoardUtility.GetCell(cell.Coordinates.x, BoardData.Y - 1, out var spawnCell);
                 spawnCell.ItemData = ItemFactory.CreateRandomItem();
-                spawnCell.ItemDistance.Reset();
+                spawnCell.ItemDistance.Increase(1.5f);
                 FallItem(spawnCell);
             }
             
