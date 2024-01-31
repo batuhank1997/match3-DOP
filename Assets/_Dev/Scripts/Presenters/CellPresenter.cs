@@ -9,7 +9,6 @@ namespace _Dev.Scripts.Presenters
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private bool m_debug;
         [SerializeField] private TextMeshPro m_debugText;
-        [SerializeField] private float m_debugYOffset;
         
         private Cell _cell;
 
@@ -43,7 +42,7 @@ namespace _Dev.Scripts.Presenters
         {
             var spriteTransform = m_spriteRenderer.transform;
             var localPos = spriteTransform.localPosition;
-            var targetYPos = _cell.ItemDistance.Value + m_debugYOffset;
+            var targetYPos = _cell.ItemDistance.Value;
 
             localPos = new Vector3(localPos.x, targetYPos, localPos.z);
             
