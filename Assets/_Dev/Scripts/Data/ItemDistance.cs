@@ -16,8 +16,6 @@ namespace _Dev.Scripts.Data
         
         public void Tick(float deltaTime)
         {
-            if (Value <= 0.5f) return;
-
             Decrease(deltaTime * 10f);
         }
         
@@ -38,7 +36,7 @@ namespace _Dev.Scripts.Data
         
         private void Decrease(float lerp)
         {
-            Value = Mathf.Lerp(Value, 0, lerp);
+            Value = Mathf.Lerp(Value, 0.5f, lerp);
         }
 
     }
