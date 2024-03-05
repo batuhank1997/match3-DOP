@@ -28,7 +28,7 @@ namespace _Dev.Scripts.Presenters
 
             m_debugText.sortingOrder = m_spriteRenderer.sortingOrder + 1;
             m_debugText.gameObject.SetActive(true);
-            m_debugText.GetComponent<TMPro.TextMeshPro>().text = $"{_cell.Coordinates.x} : {_cell.Coordinates.y}";
+            m_debugText.GetComponent<TextMeshPro>().text = $"{_cell.Coordinates.x} : {_cell.Coordinates.y}";
         }
 
         private void UpdateVisuals()
@@ -52,7 +52,6 @@ namespace _Dev.Scripts.Presenters
         private void Update()
         {
             UpdateVisuals();
-            m_debugText.text = _cell.ItemData.ItemType.ToString();
         }
     }
 }
