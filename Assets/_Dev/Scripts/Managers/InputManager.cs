@@ -59,10 +59,18 @@ namespace _Dev.Scripts.Managers
             var mousePos = (Vector2)_mainCamera.ScreenToWorldPoint(Input.mousePosition);
             var zeroPos = new Vector2(-boardData.X / 2, -boardData.Y / 2);
             
-            var x = (int)Mathf.Abs(zeroPos.x - mousePos.x);
-            var y = (int)Mathf.Abs(zeroPos.y - mousePos.y);
+            if (mousePos.y < zeroPos.y)
+                return null;
             
-            return BoardUtility.GetCell(x, y, out var cell) ? cell : null;
+            if (mousePos.x < zeroPos.x)
+                return null;
+            
+            var x = Mathf.Abs(zeroPos.x - mousePos.x);
+            var y = Mathf.Abs(zeroPos.y - mousePos.y);
+            
+            var pos = new Vector2((int)x, (int)y);
+            
+            return BoardUtility.GetCell(pos, out var cell) ? cell : null;
         }
     }
 }
