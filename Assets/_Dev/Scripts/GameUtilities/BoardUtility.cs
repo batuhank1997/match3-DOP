@@ -22,6 +22,20 @@ namespace _Dev.Scripts.GameUtilities
             return true;
         }
         
+        public static bool GetCell(Vector2 pos, out Cell cell)
+        {
+            var boardManager = GameSystem.Instance.GetManager<BoardManager>();
+
+            if (pos.x < 0 || pos.x >= boardManager.BoardData.X || pos.y < 0 || pos.y >= boardManager.BoardData.Y)
+            {
+                cell = null;
+                return false;
+            }
+        
+            cell = boardManager.BoardData.Cells[(int)pos.x][(int)pos.y];
+            return true;
+        }
+        
         public static IEnumerable<Cell> GetAllNeighbours(Cell cell)
         {
             var neighbours = new List<Cell>();
