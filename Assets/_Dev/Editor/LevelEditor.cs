@@ -1,11 +1,13 @@
-﻿using _Dev.Interfaces;
+﻿using System.Collections.Generic;
 using _Dev.Providers;
+using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.Utility;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _Dev.Editor
 {
@@ -46,7 +48,30 @@ namespace _Dev.Editor
 
         private void SaveLevelDataToJson()
         {
+            var levelData = new LevelData
+            {
+                X = X,
+                Y = Y,
+                LevelItems = new List<ItemData>()
+            };
+
+            for (var x = 0; x < X; x++)
+            {
+                for (var y = 0; y < Y; y++)
+                {
+                    var itemType = LevelDataUtility.GetItemTypeBySpriteName(LevelItemsDataMatrix[x, y].name);
+                    
+                    levelData.LevelItems.Add(new ItemData(itemType, x, y));
+                }
+            }
+
+            var json = JsonConvert.SerializeObject(levelData);
+            var path = EditorUtility.SaveFilePanel("Save Level Data", Application.dataPath, "level", "json");
+
+            if (string.IsNullOrEmpty(path))
+                return;
             
+            System.IO.File.WriteAllText(path, json);
         }
 
         private void OnInventoryChanged()

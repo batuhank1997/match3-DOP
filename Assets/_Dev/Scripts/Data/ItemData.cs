@@ -1,15 +1,33 @@
+using System;
 using _Dev.Scripts.Enums;
+using Newtonsoft.Json;
 
 namespace _Dev.Scripts.Data
 {
-    public readonly struct ItemData
+    [JsonConverter(typeof(ItemDataConverter))]
+    public struct ItemData
     {
-        public readonly ItemType ItemType;
-        public readonly SpriteData SpriteData;
+        public ItemType ItemType;
+        public SpriteData SpriteData;
+
+        public int XCoord;
+        public int YCoord;
         
         public ItemData(ItemType itemType)
         {
             ItemType = itemType;
+            var spriteId = SpriteContainer.GetSpriteIdByItemType(itemType);
+            SpriteData = new SpriteData(new SpriteIdWrapper(spriteId));
+            XCoord = 0;
+            YCoord = 0;
+        }
+        
+        [JsonConstructor]
+        public ItemData(ItemType itemType, int xCoord, int yCoord)
+        {
+            ItemType = itemType;
+            XCoord = xCoord;
+            YCoord = yCoord;
             var spriteId = SpriteContainer.GetSpriteIdByItemType(itemType);
             SpriteData = new SpriteData(new SpriteIdWrapper(spriteId));
         }
