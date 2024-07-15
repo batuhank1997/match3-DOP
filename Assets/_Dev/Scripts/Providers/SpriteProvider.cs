@@ -14,15 +14,22 @@ namespace _Dev.Providers
         public Sprite Yellow;
         public Sprite Purple;
         public Sprite Pink;
-        
-        public void Initialize()
-        {
-            
-        }
 
-        public void Dispose()
+        public Sprite[] GetAllSprites()
         {
-            
+            return new []
+            {
+                InValid,
+                Red,
+                Blue,
+                Green,
+                Yellow,
+                Purple,
+                Pink
+            };
         }
+        
+        public void Initialize() { }
+        public void Dispose() { }
     }
 }
