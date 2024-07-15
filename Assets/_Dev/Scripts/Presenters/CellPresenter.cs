@@ -8,6 +8,7 @@ namespace _Dev.Scripts.Presenters
     {
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private bool m_debug;
+        [SerializeField] private bool m_rename;
         [SerializeField] private TextMeshPro m_debugText;
         
         private Cell _cell;
@@ -15,7 +16,10 @@ namespace _Dev.Scripts.Presenters
         public void Initialize(Cell cell, int sortingOrder)
         {
             _cell = cell;
-            gameObject.name = $"Cell {_cell.Coordinates.x} : {_cell.Coordinates.y}";
+
+            if (m_rename)
+                gameObject.name = $"Cell {_cell.Coordinates.x} : {_cell.Coordinates.y}";
+            
             m_spriteRenderer.sortingOrder = sortingOrder;
 
             SetDebugText();
