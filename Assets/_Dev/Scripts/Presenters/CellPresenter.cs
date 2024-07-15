@@ -16,7 +16,7 @@ namespace _Dev.Scripts.Presenters
         public void Initialize(Cell cell, int sortingOrder)
         {
             _cell = cell;
-
+            
             if (m_rename)
                 gameObject.name = $"Cell {_cell.Coordinates.x} : {_cell.Coordinates.y}";
             
@@ -37,9 +37,13 @@ namespace _Dev.Scripts.Presenters
 
         private void UpdateVisuals()
         {
-            m_spriteRenderer.sprite = SpriteContainer.GetSpriteByItemType(_cell.ItemData.ItemType);
-
+            UpdateSprite();
             UpdateItemPosition();
+        }
+
+        private void UpdateSprite()
+        {
+            m_spriteRenderer.sprite = SpriteContainer.GetSpriteByItemType(_cell.ItemData.ItemType);
         }
 
         private void UpdateItemPosition()
