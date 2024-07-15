@@ -219,8 +219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_spriteRenderer: {fileID: 4635697878794496265}
   m_debug: 0
+  m_rename: 0
   m_debugText: {fileID: 3919944981489087446}
-  m_debugYOffset: 0
 --- !u!1 &8769378948216609294
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fbc0d77f75275294c954ffb1c8a43eff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
