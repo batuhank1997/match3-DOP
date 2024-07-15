@@ -4,7 +4,6 @@ namespace _Dev.Scripts.Utility
 {
     public class Singleton<T> : UnityEngine.MonoBehaviour where T : Component
     {
-        private static object m_Lock = new object();
         private static T m_Instance;
 
         /// <summary>
