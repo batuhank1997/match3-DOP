@@ -23,6 +23,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c326d9120288771498a850f2610df39a, type: 3}
     - {fileID: 21300000, guid: e40d08cf02b0f8944910bca9057b49a4, type: 3}
     - {fileID: 21300000, guid: 97b5526ee1c657046b87b0791ebf2609, type: 3}
+    - {fileID: 4900000, guid: 04b5c291e8c9fd14698193a182f36a4a, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -41,7 +42,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -90,6 +91,24 @@ MonoBehaviour:
     - Name: Pink
       Entry: 10
       Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: LevelDataProvider
+    - Name: $v
+      Entry: 7
+      Data: 4|_Dev.Providers.LevelDataProvider, Assembly-CSharp
+    - Name: LevelDataJsonTextAsset
+      Entry: 10
+      Data: 7
     - Name: 
       Entry: 8
       Data: 

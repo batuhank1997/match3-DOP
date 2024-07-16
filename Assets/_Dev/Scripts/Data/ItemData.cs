@@ -5,19 +5,15 @@ using Newtonsoft.Json;
 namespace _Dev.Scripts.Data
 {
     [JsonConverter(typeof(ItemDataConverter))]
-    public struct ItemData
+    public readonly struct ItemData
     {
-        public ItemType ItemType;
-        public SpriteData SpriteData;
-
-        public int XCoord;
-        public int YCoord;
+        [JsonProperty(nameof(ItemType))] public readonly ItemType ItemType;
+        [JsonProperty(nameof(XCoord))] public readonly int XCoord;
+        [JsonProperty(nameof(YCoord))] public readonly int YCoord;
         
         public ItemData(ItemType itemType)
         {
             ItemType = itemType;
-            var spriteId = SpriteContainer.GetSpriteIdByItemType(itemType);
-            SpriteData = new SpriteData(new SpriteIdWrapper(spriteId));
             XCoord = 0;
             YCoord = 0;
         }
@@ -28,8 +24,6 @@ namespace _Dev.Scripts.Data
             ItemType = itemType;
             XCoord = xCoord;
             YCoord = yCoord;
-            var spriteId = SpriteContainer.GetSpriteIdByItemType(itemType);
-            SpriteData = new SpriteData(new SpriteIdWrapper(spriteId));
         }
     }
 }

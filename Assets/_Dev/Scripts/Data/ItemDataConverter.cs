@@ -9,12 +9,11 @@ namespace _Dev.Scripts.Data
         public override void WriteJson(JsonWriter writer, ItemData itemData, JsonSerializer serializer)
         {
             writer.WriteStartObject();
-            writer.WritePropertyName("XCoord");
-            writer.WriteValue(itemData.XCoord);
-            writer.WritePropertyName("YCoord");
-            writer.WriteValue(itemData.YCoord);
-            writer.WritePropertyName("ItemType");
-            writer.WriteValue(itemData.ItemType.ToString());
+            
+            serializer.Serialize(writer, itemData.XCoord);
+            serializer.Serialize(writer, itemData.YCoord);
+            serializer.Serialize(writer, itemData.ItemType);
+            
             writer.WriteEndObject();
         }
 
@@ -28,17 +27,18 @@ namespace _Dev.Scripts.Data
             {
                 if (reader.TokenType == JsonToken.PropertyName)
                 {
-                    var propertyName = reader.Value.ToString();
+                    var propertyName = reader.Value?.ToString();
                     reader.Read();
+                    
                     switch (propertyName)
                     {
-                        case "XCoord":
-                            xCoord = int.Parse(reader.Value.ToString());
+                        case nameof(existingValue.XCoord):
+                            xCoord = reader.Value != null ? Convert.ToInt32(reader.Value) : 0;
                             break;
-                        case "YCoord":
-                            yCoord = int.Parse(reader.Value.ToString());
+                        case nameof(existingValue.YCoord):
+                            yCoord = reader.Value != null ? Convert.ToInt32(reader.Value) : 0;
                             break;
-                        case "ItemType":
+                        case nameof(existingValue.ItemType):
                             itemType = (ItemType) Enum.Parse(typeof(ItemType), reader.Value.ToString());
                             break;
                     }

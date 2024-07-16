@@ -53,6 +53,12 @@ namespace _Dev
             return m_servicesDictionary.service.ContainsKey(key);
         }
 
+        private void OnEnable()
+        {
+            foreach (var service in m_servicesDictionary.service)
+                service.Value.Initialize();
+        }
+
         private void OnDestroy()
         {
             foreach (var service in m_servicesDictionary.service)

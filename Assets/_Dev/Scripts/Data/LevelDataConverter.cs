@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _Dev.Scripts.Data
 {
@@ -8,15 +10,11 @@ namespace _Dev.Scripts.Data
             public override void WriteJson(JsonWriter writer, LevelData levelData, JsonSerializer serializer)
             {
                 writer.WriteStartObject();
-                writer.WritePropertyName("X");
-                writer.WriteValue(levelData.X);
-                writer.WritePropertyName("Y");
-                writer.WriteValue(levelData.Y);
-                writer.WritePropertyName("LevelItems");
-
-                foreach (var itemData in levelData.LevelItems)
-                    writer.WriteValue(itemData);
                 
+                serializer.Serialize(writer, levelData.X);
+                serializer.Serialize(writer, levelData.Y);
+                serializer.Serialize(writer, levelData.LevelItems);
+
                 writer.WriteEndObject();
             }
 
@@ -25,7 +23,9 @@ namespace _Dev.Scripts.Data
             {
                 var x = 0;
                 var y = 0;
-                var levelItems = new LevelData();
+                var levelItems = new List<ItemData>();
+                
+                var levelData = new LevelData();
 
                 while (reader.Read())
                 {
@@ -42,12 +42,7 @@ namespace _Dev.Scripts.Data
                                 y = int.Parse(reader.Value.ToString());
                                 break;
                             case "LevelItems":
-                                reader.Read();
-                                while (reader.TokenType != JsonToken.EndArray)
-                                {
-                                    var itemData = serializer.Deserialize<ItemData>(reader);
-                                    levelItems.LevelItems.Add(itemData);
-                                }
+                                levelItems = serializer.Deserialize<List<ItemData>>(reader);
                                 break;
                         }
                     }
@@ -56,9 +51,10 @@ namespace _Dev.Scripts.Data
                         break;
                 }
 
-                levelItems.X = x;
-                levelItems.Y = y;
-                return levelItems;
+                levelData.X = x;
+                levelData.Y = y;
+                levelData.LevelItems = levelItems;
+                return levelData;
             }
     }
 }

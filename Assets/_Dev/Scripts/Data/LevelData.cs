@@ -6,8 +6,8 @@ namespace _Dev.Scripts.Data
     [JsonConverter(typeof(LevelDataConverter))]
     public class LevelData
     {
-        public int X;
-        public int Y;
-        public List<ItemData> LevelItems;
+        [JsonProperty("X")] public int X;
+        [JsonProperty("Y")] public int Y;
+        [JsonProperty("LevelItems")] public List<ItemData> LevelItems;
     }
 }

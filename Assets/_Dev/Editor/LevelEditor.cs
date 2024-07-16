@@ -3,6 +3,7 @@ using _Dev.Providers;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Utility;
+using Newtonsoft.Json.Linq;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Unity.Plastic.Newtonsoft.Json;
@@ -20,6 +21,8 @@ namespace _Dev.Editor
         
         [TableMatrix(HorizontalTitle = "Usables Items", SquareCells = true, ResizableColumns = true), OnValueChanged(nameof(OnInventoryChanged))] 
         public Texture2D[,] Items;
+
+        public string LevelDataJson;
 
         [MenuItem("Tools/Level Editor")]
         private static void OpenWindow()
@@ -45,6 +48,25 @@ namespace _Dev.Editor
         {
             SaveLevelDataToJson();
         }
+        
+        [Button]
+        public void SerializeLevelData()
+        {
+            SaveLevelDataToJson();
+        }
+        
+        [Button]
+        public void DeserializeLevelData()
+        {
+            var levelData = JsonConvert.DeserializeObject<LevelData>(LevelDataJson);
+
+            foreach (var itemData in levelData.LevelItems)
+            {
+                Debug.Log(itemData.XCoord);
+                Debug.Log(itemData.YCoord);
+                Debug.Log(itemData.ItemType);
+            }
+        }
 
         private void SaveLevelDataToJson()
         {
@@ -66,6 +88,7 @@ namespace _Dev.Editor
             }
 
             var json = JsonConvert.SerializeObject(levelData);
+            LevelDataJson = json;
             var path = EditorUtility.SaveFilePanel("Save Level Data", Application.dataPath, "level", "json");
 
             if (string.IsNullOrEmpty(path))

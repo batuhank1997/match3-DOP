@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Dev.Providers;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Factory;
@@ -25,7 +26,9 @@ namespace _Dev.Scripts.Managers
         public void Initialize()
         {
             _boardFactory = new BoardFactory();
-            BoardData = _boardFactory.CreateBoard(8, 8);
+            // BoardData = _boardFactory.CreateRandomBoard(8, 8);
+            var levelData = ServiceLocator.Instance.Get<LevelDataProvider>().LevelData;
+            BoardData = _boardFactory.CreateBoard(levelData.X, levelData.Y, levelData.LevelItems);
             MatchManager.OnCellsBlasted += OnCellsBlasted;
         }
         

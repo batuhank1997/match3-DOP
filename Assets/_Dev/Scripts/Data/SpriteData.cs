@@ -1,8 +1,8 @@
 ﻿namespace _Dev.Scripts.Data
 {
-    public readonly struct SpriteData
+    public struct SpriteData
     {
-        public readonly SpriteIdWrapper SpriteId;
+        public SpriteIdWrapper SpriteId;
         
         public SpriteData(SpriteIdWrapper spriteId)
         {
