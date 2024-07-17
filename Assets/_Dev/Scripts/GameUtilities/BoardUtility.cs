@@ -3,6 +3,7 @@ using _Dev.Scripts.Data;
 using _Dev.Scripts.Managers;
 using _Dev.Scripts.System;
 using UnityEngine;
+using NotImplementedException = System.NotImplementedException;
 
 namespace _Dev.Scripts.GameUtilities
 {
@@ -117,5 +118,21 @@ namespace _Dev.Scripts.GameUtilities
             return topCells;
         }
 
+        public static List<Cell> GetEmptyCells()
+        {
+            var allCells = GameSystem.Instance.GetManager<BoardManager>().BoardData.Cells;
+            var emptyCells = new List<Cell>();
+            
+            foreach (var column in allCells)
+            {
+                foreach (var cell in column)
+                {
+                    if (cell.IsEmpty())
+                        emptyCells.Add(cell);
+                }
+            }
+            
+            return emptyCells;
+        }
     }
 }

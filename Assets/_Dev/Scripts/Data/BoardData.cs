@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-namespace _Dev.Scripts.Data
+﻿namespace _Dev.Scripts.Data
 {
     public readonly struct BoardData
     {

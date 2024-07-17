@@ -26,7 +26,6 @@ namespace _Dev.Scripts.Managers
         public void Initialize()
         {
             _boardFactory = new BoardFactory();
-            // BoardData = _boardFactory.CreateRandomBoard(8, 8);
             var levelData = ServiceLocator.Instance.Get<LevelDataProvider>().LevelData;
             BoardData = _boardFactory.CreateBoard(levelData.X, levelData.Y, levelData.LevelItems);
             MatchManager.OnCellsBlasted += OnCellsBlasted;
@@ -41,7 +40,7 @@ namespace _Dev.Scripts.Managers
         private void OnCellsBlasted(List<Cell> blastedCells)
         {
             FallItemsOnTop(blastedCells);
-            UpdateHandler.Instance.StartCoroutine(FillBoardWithNewItems(blastedCells));
+            FillBoardWithNewItems();
         }
 
         private static void FallItemsOnTop(List<Cell> blastedCells)
@@ -68,23 +67,20 @@ namespace _Dev.Scripts.Managers
             cell.ItemData = new ItemData(ItemType.Empty);
             cell.ItemDistance.Reset();
         }
-
-        private IEnumerator FillBoardWithNewItems(List<Cell> blastedCell)
+        
+        private void FillBoardWithNewItems()
         {
-            blastedCell = blastedCell.OrderBy(c => c.Coordinates.y).ToList();
+            var emptyCells = BoardUtility.GetEmptyCells();
+            var orderedCells = emptyCells.OrderBy(c => c.Coordinates.y).ToList();
+            var offset = BoardData.Y - orderedCells[0].Coordinates.y;
             
-            foreach (var cell in blastedCell)
+            foreach (var cell in emptyCells)
             {
-                yield return _itemCreatingDelay;
-                
-                BoardUtility.GetCell(cell.Coordinates.x, BoardData.Y - 1, out var spawnCell);
-                spawnCell.ItemData = ItemFactory.CreateRandomItem();
-                spawnCell.ItemDistance.Increase(1.5f);
+                BoardUtility.GetCell(cell.Coordinates.x, cell.Coordinates.y, out var spawnCell);
+                spawnCell.ItemData = ItemFactory.CreateRandomItem(); //TODO :::: Create a algorithm for creating items to not lock the game
+                spawnCell.ItemDistance.Set(offset * 2);
                 FallItem(spawnCell);
             }
-            
-            
-            yield return null;
         }
     }
 }
