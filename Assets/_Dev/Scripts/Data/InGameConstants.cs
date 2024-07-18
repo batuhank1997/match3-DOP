@@ -5,6 +5,8 @@
         public static class Item
         {
             public const float StartingItemDistance = 0.5f;
+            public const float ItemDistanceLerpDuration = 2f;
+            public const float NewItemCreationDelay = 0.2f;
         }
     }
 }
