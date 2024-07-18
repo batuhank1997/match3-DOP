@@ -16,7 +16,7 @@ namespace _Dev.Scripts.Managers
         public BoardData BoardData { get; private set; }
         
         private BoardFactory _boardFactory;
-        private readonly WaitForSeconds _itemCreatingDelay = new (0.1f);
+        private readonly WaitForSeconds _itemCreatingDelay = new (InGameConstants.Item.NewItemCreationDelay);
 
         public BoardManager()
         {
@@ -40,7 +40,7 @@ namespace _Dev.Scripts.Managers
         private void OnCellsBlasted(List<Cell> blastedCells)
         {
             FallItemsOnTop(blastedCells);
-            FillBoardWithNewItems();
+            UpdateHandler.Instance.StartCoroutine(FillBoardWithNewItems());
         }
 
         private static void FallItemsOnTop(List<Cell> blastedCells)
@@ -68,8 +68,10 @@ namespace _Dev.Scripts.Managers
             cell.ItemDistance.Reset();
         }
         
-        private void FillBoardWithNewItems()
+        private IEnumerator FillBoardWithNewItems()
         {
+            yield return _itemCreatingDelay;
+            
             var emptyCells = BoardUtility.GetEmptyCells();
             var orderedCells = emptyCells.OrderBy(c => c.Coordinates.y).ToList();
             var offset = BoardData.Y - orderedCells[0].Coordinates.y;
