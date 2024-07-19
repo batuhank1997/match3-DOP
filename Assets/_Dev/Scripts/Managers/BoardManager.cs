@@ -37,6 +37,20 @@ namespace _Dev.Scripts.Managers
             _boardFactory = null;
         }
         
+        public bool IsItemsStillMoving()
+        {
+            foreach (var xCells in BoardData.Cells)
+            {
+                foreach (var yCell in xCells)
+                {
+                    if (!Mathf.Approximately(yCell.ItemDistance.Value, 0.5f))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+        
         private void OnCellsBlasted(List<Cell> blastedCells)
         {
             FallItemsOnTop(blastedCells);
