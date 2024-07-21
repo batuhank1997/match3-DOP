@@ -24,6 +24,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e40d08cf02b0f8944910bca9057b49a4, type: 3}
     - {fileID: 21300000, guid: 97b5526ee1c657046b87b0791ebf2609, type: 3}
     - {fileID: 4900000, guid: 04b5c291e8c9fd14698193a182f36a4a, type: 3}
+    - {fileID: -4089285434912292415, guid: f9eb2f19f9083d3498e39a9e221f12cd, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -42,7 +43,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -109,6 +110,63 @@ MonoBehaviour:
     - Name: LevelDataJsonTextAsset
       Entry: 10
       Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UIProvider
+    - Name: $v
+      Entry: 7
+      Data: 5|_Dev.Scripts.UI.Base.UIProvider, Assembly-CSharp
+    - Name: _panelViews
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[_Dev.Scripts.UI.Base.PanelView,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _popupViews
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[_Dev.Scripts.UI.Base.PopupView,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _overlayViews
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[_Dev.Scripts.UI.Base.OverlayView,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
