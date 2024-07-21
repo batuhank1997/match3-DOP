@@ -3,7 +3,7 @@ using _Dev.Interfaces;
 using _Dev.Scripts.Utility;
 using UnityEngine;
 
-namespace _Dev
+namespace _Dev.Scripts.Systems.ServiceLocator
 {
     public class ServiceLocator : Singleton<ServiceLocator>
     {

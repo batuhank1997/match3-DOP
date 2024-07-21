@@ -1,5 +1,5 @@
 ﻿using System;
-using _Dev.Scripts.System;
+using _Dev.Scripts.Systems.Game;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers

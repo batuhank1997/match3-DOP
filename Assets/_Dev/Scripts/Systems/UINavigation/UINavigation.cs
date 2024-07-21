@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Dev.Scripts.Systems.UINavigation.Abstract;
+using _Dev.Scripts.UI.Base;
 using Object = UnityEngine.Object;
 
-namespace _Dev.Scripts.UI.Base
+namespace _Dev.Scripts.Systems.UINavigation
 {
     public static class UINavigation
     {
@@ -16,7 +18,7 @@ namespace _Dev.Scripts.UI.Base
         public static void Initialize(MainCanvas canvasTransform)
         {
             _mainCanvas = canvasTransform;
-            _uiProvider = ServiceLocator.Instance.Get<UIProvider>();
+            _uiProvider = ServiceLocator.ServiceLocator.Instance.Get<UIProvider>();
             InitializeOverlays();
             InitializePanels();
             InitializePopups();

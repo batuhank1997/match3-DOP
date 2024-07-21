@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.Managers;
-using _Dev.Scripts.System;
+using _Dev.Scripts.Systems.Game;
 using UnityEngine;
 using NotImplementedException = System.NotImplementedException;
 

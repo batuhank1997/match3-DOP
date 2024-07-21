@@ -1,4 +1,4 @@
-﻿namespace _Dev.Scripts.UI.Base
+﻿namespace _Dev.Scripts.Systems.UINavigation.Abstract
 {
     public abstract class PanelView : UIView
     {

@@ -2,7 +2,7 @@ using System;
 using _Dev.Interfaces;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.GameUtilities;
-using _Dev.Scripts.System;
+using _Dev.Scripts.Systems.Game;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers

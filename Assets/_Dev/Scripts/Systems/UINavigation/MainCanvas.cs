@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Dev.Scripts.UI
+namespace _Dev.Scripts.Systems.UINavigation
 {
     public class MainCanvas : MonoBehaviour
     {

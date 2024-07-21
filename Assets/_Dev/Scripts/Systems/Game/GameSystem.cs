@@ -4,7 +4,7 @@ using System.Reflection;
 using _Dev.Scripts.Managers;
 using _Dev.Scripts.Utility;
 
-namespace _Dev.Scripts.System
+namespace _Dev.Scripts.Systems.Game
 {
     public class GameSystem : Singleton<GameSystem>
     {

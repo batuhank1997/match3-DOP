@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Dev.Interfaces;
+using _Dev.Scripts.Systems.UINavigation;
+using _Dev.Scripts.Systems.UINavigation.Abstract;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
