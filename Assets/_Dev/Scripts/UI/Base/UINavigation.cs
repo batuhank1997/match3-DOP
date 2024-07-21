@@ -87,7 +87,8 @@ namespace _Dev.Scripts.UI.Base
         
         public static class Popup
         {
-            private static Queue<PopupView> _activePopups = new ();
+            private static readonly Queue<PopupView> _activePopups = new ();
+            private static readonly Queue<PopupView> _readyToShowPopups = new ();
 
             public static void OpenPopup(string popupName)
             {
@@ -107,11 +108,27 @@ namespace _Dev.Scripts.UI.Base
                 HidePopup();
             }
             
+            public static void Register(string popupName)
+            {
+                if (!_popupViews.TryGetValue(popupName, out var popup))
+                    throw new ArgumentException($"There is no popup with the name {popupName} to open.");
+                
+                _readyToShowPopups.Enqueue(popup);
+            }
+            
             private static void HidePopup()
             {
                 var popup = _activePopups.Dequeue();
                 popup.Hide(default);
                 Object.Destroy(popup.gameObject);
+
+                if (_readyToShowPopups.Count <= 0) return;
+                
+                var firstPopupToOpen = _readyToShowPopups.Dequeue();
+                var newActivePopup = Object.Instantiate(firstPopupToOpen, _mainCanvas.PopupContainer);
+
+                _activePopups.Enqueue(newActivePopup);
+                newActivePopup.Show(default);
             }
             
             private static void ShowPopup(PopupView popup)
