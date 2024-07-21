@@ -53,7 +53,7 @@ namespace _Dev.Scripts.UI.Base
                 _overlayViews.Add(overlay.name, overlay);
         }
         
-        public static class Panel
+        internal static class Panel
         {
             private static PanelView _activePanel;
             
@@ -85,7 +85,7 @@ namespace _Dev.Scripts.UI.Base
             }
         }
         
-        public static class Popup
+        internal static class Popup
         {
             private static readonly Queue<PopupView> _activePopups = new ();
             private static readonly Queue<PopupView> _readyToShowPopups = new ();
@@ -139,7 +139,7 @@ namespace _Dev.Scripts.UI.Base
             }
         }
         
-        public static class Overlay
+        internal static class Overlay
         {
             private static OverlayView _activeOverlay;
 
