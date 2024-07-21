@@ -11,10 +11,12 @@ namespace _Dev.Scripts.UI.Base
         private static readonly Dictionary<string, OverlayView> _overlayViews = new ();
         
         private static MainCanvas _mainCanvas;
+        private static UIProvider _uiProvider;
 
         public static void Initialize(MainCanvas canvasTransform)
         {
             _mainCanvas = canvasTransform;
+            _uiProvider = ServiceLocator.Instance.Get<UIProvider>();
             InitializeOverlays();
             InitializePanels();
             InitializePopups();
@@ -29,7 +31,7 @@ namespace _Dev.Scripts.UI.Base
         
         private static void InitializePopups()
         {
-            var popupViews = ServiceLocator.Instance.Get<UIProvider>().GetPopupViews();
+            var popupViews = _uiProvider.GetPopupViews();
 
             foreach (var popup in popupViews)
                 _popupViews.Add(popup.name, popup);
@@ -37,7 +39,7 @@ namespace _Dev.Scripts.UI.Base
         
         private static void InitializePanels()
         {
-            var panelViews = ServiceLocator.Instance.Get<UIProvider>().GetPanelViews();
+            var panelViews = _uiProvider.GetPanelViews();
 
             foreach (var panel in panelViews)
                 _panelViews.Add(panel.name, panel);
@@ -45,7 +47,7 @@ namespace _Dev.Scripts.UI.Base
         
         private static void InitializeOverlays()
         {
-            var overlays = ServiceLocator.Instance.Get<UIProvider>().GetOverlayViews();
+            var overlays = _uiProvider.GetOverlayViews();
 
             foreach (var overlay in overlays)
                 _overlayViews.Add(overlay.name, overlay);
@@ -85,35 +87,38 @@ namespace _Dev.Scripts.UI.Base
         
         public static class Popup
         {
-            private static PopupView _activePopup;
+            private static Queue<PopupView> _activePopups = new ();
 
             public static void OpenPopup(string popupName)
             {
                 if (!_popupViews.TryGetValue(popupName, out var popup))
                     throw new ArgumentException($"There is no popup with the name {popupName} to open.");
                 
-                _activePopup = popup;
-                ShowPopup();
+                ShowPopup(popup);
             }
             
-            public static void ClosePopup(string popupName)
+            public static void ClosePopup()
             {
-                if (_activePopup == null)
-                    throw new ArgumentException($"There is no active popup {popupName} to close.");
+                if (_activePopups == null)
+                    throw new ArgumentException($"There is no active popup to close.");
+                if (_activePopups.Count == 0)
+                    return;
 
                 HidePopup();
             }
             
             private static void HidePopup()
             {
-                _activePopup.Hide(default);
-                Object.Destroy(_activePopup.gameObject);
+                var popup = _activePopups.Dequeue();
+                popup.Hide(default);
+                Object.Destroy(popup.gameObject);
             }
             
-            private static void ShowPopup()
+            private static void ShowPopup(PopupView popup)
             {
-                Object.Instantiate(_activePopup, _mainCanvas.PopupContainer);
-                _activePopup.Show(default);
+                var enqueuedPopup = Object.Instantiate(popup, _mainCanvas.PopupContainer);
+                _activePopups.Enqueue(enqueuedPopup);
+                enqueuedPopup.Show(default);
             }
         }
         
@@ -126,8 +131,7 @@ namespace _Dev.Scripts.UI.Base
                 if (!_overlayViews.TryGetValue(overlayName, out var overlay))
                     throw new ArgumentException($"There is no popup with the name {overlayName} to open.");
                 
-                _activeOverlay = overlay;
-                ShowOverlay();
+                ShowOverlay(overlay);
             }
 
             public static void CloseOverlay(string overlayName)
@@ -138,9 +142,9 @@ namespace _Dev.Scripts.UI.Base
                 HideOverlay();
             }
             
-            private static void ShowOverlay()
+            private static void ShowOverlay(OverlayView overlay)
             {
-                Object.Instantiate(_activeOverlay, _mainCanvas.OverlayContainer);
+                _activeOverlay = Object.Instantiate(overlay, _mainCanvas.OverlayContainer);
                 _activeOverlay.Show(default);
             }
             
