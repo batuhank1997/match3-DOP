@@ -11,5 +11,10 @@ namespace _Dev.Scripts.UI
         public Transform PanelContainer => _panelContainer;
         public Transform PopupContainer => _popupContainer;
         public Transform OverlayContainer => _overlayContainer;
+        
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
     }
 }
