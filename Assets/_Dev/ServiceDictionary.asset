@@ -24,7 +24,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e40d08cf02b0f8944910bca9057b49a4, type: 3}
     - {fileID: 21300000, guid: 97b5526ee1c657046b87b0791ebf2609, type: 3}
     - {fileID: 4900000, guid: 04b5c291e8c9fd14698193a182f36a4a, type: 3}
-    - {fileID: -4089285434912292415, guid: f9eb2f19f9083d3498e39a9e221f12cd, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -127,7 +126,7 @@ MonoBehaviour:
       Data: 5|_Dev.Scripts.UI.Base.UIProvider, Assembly-CSharp
     - Name: _panelViews
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[_Dev.Scripts.UI.Base.PanelView,
+      Data: 6|System.Collections.Generic.List`1[[_Dev.Scripts.Systems.UINavigation.Abstract.PanelView,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -140,14 +139,11 @@ MonoBehaviour:
       Data: 
     - Name: _popupViews
       Entry: 7
-      Data: 7|System.Collections.Generic.List`1[[_Dev.Scripts.UI.Base.PopupView,
+      Data: 7|System.Collections.Generic.List`1[[_Dev.Scripts.Systems.UINavigation.Abstract.PopupView,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 8
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -156,7 +152,7 @@ MonoBehaviour:
       Data: 
     - Name: _overlayViews
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[_Dev.Scripts.UI.Base.OverlayView,
+      Data: 8|System.Collections.Generic.List`1[[_Dev.Scripts.Systems.UINavigation.Abstract.OverlayView,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
