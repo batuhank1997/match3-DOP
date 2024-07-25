@@ -7,7 +7,7 @@ namespace _Dev.Scripts.Logic
     public static class MatchSearcher
     {
         private static readonly List<Cell> _traversedCells = new List<Cell>();
-        private static int _matchSizeCounter = 0;
+        private static byte _matchSizeCounter = 0;
 
         public static MatchData SearchMatch(Cell clickedCell)
         {

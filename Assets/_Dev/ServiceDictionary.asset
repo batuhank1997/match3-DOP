@@ -23,6 +23,24 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c326d9120288771498a850f2610df39a, type: 3}
     - {fileID: 21300000, guid: e40d08cf02b0f8944910bca9057b49a4, type: 3}
     - {fileID: 21300000, guid: 97b5526ee1c657046b87b0791ebf2609, type: 3}
+    - {fileID: 21300000, guid: 881c67b9fbbe581469a1877ac61e7b10, type: 3}
+    - {fileID: 21300000, guid: bd222de75daff644db965851a076bfb2, type: 3}
+    - {fileID: 21300000, guid: 104110901f74a8b45817182513f70bcb, type: 3}
+    - {fileID: 21300000, guid: 4d2f93d715afa4a4d9eb117289b4c33e, type: 3}
+    - {fileID: 21300000, guid: d06bacf9a76351d44a421bf78de4d5a2, type: 3}
+    - {fileID: 21300000, guid: 18a9456fb224d3a44b8ec925e29b6df1, type: 3}
+    - {fileID: 21300000, guid: 46c2dc28a5fbe704ab048c06aa88c4f7, type: 3}
+    - {fileID: 21300000, guid: f2a4e9af200b9154cbedac896b54e600, type: 3}
+    - {fileID: 21300000, guid: d26862e006482c24dbf6fb25b474d4bb, type: 3}
+    - {fileID: 21300000, guid: 95b55957668acd24b8696fe2a0624996, type: 3}
+    - {fileID: 21300000, guid: e70945445dcc05d45bf6cea74debf71e, type: 3}
+    - {fileID: 21300000, guid: 4cdacef6e6e6a0c49a4cc3b38a84cb53, type: 3}
+    - {fileID: 21300000, guid: f13727db89d129d46afc6c766e7cb7b5, type: 3}
+    - {fileID: 21300000, guid: ac00ec570f4b2ba4bbc6329eb81129b2, type: 3}
+    - {fileID: 21300000, guid: 28101e29909f4fe4fbac16f5af2071a9, type: 3}
+    - {fileID: 21300000, guid: 09d596fa86955b04b8f16239d1a52dd7, type: 3}
+    - {fileID: 21300000, guid: 023d70d056707464d91d11799f12d06c, type: 3}
+    - {fileID: 21300000, guid: 90a6298065c58dd4c9d224ff1c80239e, type: 3}
     - {fileID: 4900000, guid: 04b5c291e8c9fd14698193a182f36a4a, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -91,6 +109,60 @@ MonoBehaviour:
     - Name: Pink
       Entry: 10
       Data: 6
+    - Name: RedBasicBomb
+      Entry: 10
+      Data: 7
+    - Name: RedTwoDirectionalRocket
+      Entry: 10
+      Data: 8
+    - Name: RedDisco
+      Entry: 10
+      Data: 9
+    - Name: BlueBasicBomb
+      Entry: 10
+      Data: 10
+    - Name: BlueTwoDirectionalRocket
+      Entry: 10
+      Data: 11
+    - Name: BlueDisco
+      Entry: 10
+      Data: 12
+    - Name: GreenBasicBomb
+      Entry: 10
+      Data: 13
+    - Name: GreenTwoDirectionalRocket
+      Entry: 10
+      Data: 14
+    - Name: GreenDisco
+      Entry: 10
+      Data: 15
+    - Name: YellowBasicBomb
+      Entry: 10
+      Data: 16
+    - Name: YellowTwoDirectionalRocket
+      Entry: 10
+      Data: 17
+    - Name: YellowDisco
+      Entry: 10
+      Data: 18
+    - Name: PinkBasicBomb
+      Entry: 10
+      Data: 19
+    - Name: PinkTwoDirectionalRocket
+      Entry: 10
+      Data: 20
+    - Name: PinkDisco
+      Entry: 10
+      Data: 21
+    - Name: PurpleBasicBomb
+      Entry: 10
+      Data: 22
+    - Name: PurpleTwoDirectionalRocket
+      Entry: 10
+      Data: 23
+    - Name: PurpleDisco
+      Entry: 10
+      Data: 24
     - Name: 
       Entry: 8
       Data: 
@@ -108,7 +180,7 @@ MonoBehaviour:
       Data: 4|_Dev.Providers.LevelDataProvider, Assembly-CSharp
     - Name: LevelDataJsonTextAsset
       Entry: 10
-      Data: 7
+      Data: 25
     - Name: 
       Entry: 8
       Data: 

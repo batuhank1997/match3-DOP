@@ -1,4 +1,5 @@
 using _Dev.Scripts.Data;
+using _Dev.Scripts.GameUtilities;
 using TMPro;
 using UnityEngine;
 
@@ -6,10 +7,10 @@ namespace _Dev.Scripts.Presenters
 {
     public class CellPresenter : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer m_spriteRenderer;
-        [SerializeField] private bool m_debug;
-        [SerializeField] private bool m_rename;
-        [SerializeField] private TextMeshPro m_debugText;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private bool _debug;
+        [SerializeField] private bool _rename;
+        [SerializeField] private TextMeshPro _debugText;
         
         private Cell _cell;
 
@@ -17,10 +18,10 @@ namespace _Dev.Scripts.Presenters
         {
             _cell = cell;
             
-            if (m_rename)
+            if (_rename)
                 gameObject.name = $"Cell {_cell.Coordinates.x} : {_cell.Coordinates.y}";
             
-            m_spriteRenderer.sortingOrder = sortingOrder;
+            _spriteRenderer.sortingOrder = sortingOrder;
 
             SetDebugText();
             UpdateVisuals();
@@ -28,11 +29,11 @@ namespace _Dev.Scripts.Presenters
         
         private void SetDebugText()
         {
-            if (!m_debug) return;
+            if (!_debug) return;
 
-            m_debugText.sortingOrder = m_spriteRenderer.sortingOrder + 1;
-            m_debugText.gameObject.SetActive(true);
-            m_debugText.GetComponent<TextMeshPro>().text = $"{_cell.Coordinates.x} : {_cell.Coordinates.y}";
+            _debugText.sortingOrder = _spriteRenderer.sortingOrder + 1;
+            _debugText.gameObject.SetActive(true);
+            _debugText.GetComponent<TextMeshPro>().text = $"{_cell.Coordinates.x} : {_cell.Coordinates.y}";
         }
 
         private void UpdateVisuals()
@@ -43,12 +44,12 @@ namespace _Dev.Scripts.Presenters
 
         private void UpdateSprite()
         {
-            m_spriteRenderer.sprite = SpriteContainer.GetSpriteByItemType(_cell.ItemData.ItemType);
+            _spriteRenderer.sprite = _cell.GetItemSpriteBySpecification();
         }
 
         private void UpdateItemPosition()
         {
-            var spriteTransform = m_spriteRenderer.transform;
+            var spriteTransform = _spriteRenderer.transform;
             var localPos = spriteTransform.localPosition;
             var targetYPos = _cell.ItemDistance.Value;
 

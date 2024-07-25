@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 6234117410060630676}
   - component: {fileID: 6593680302731252613}
   m_Layer: 0
-  m_Name: CellView
+  m_Name: CellPresenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,10 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9699d3431537d4b84189f04517fad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_spriteRenderer: {fileID: 4635697878794496265}
-  m_debug: 0
-  m_rename: 0
-  m_debugText: {fileID: 3919944981489087446}
+  _spriteRenderer: {fileID: 4635697878794496265}
+  _debug: 0
+  _rename: 0
+  _debugText: {fileID: 3919944981489087446}
 --- !u!1 &8769378948216609294
 GameObject:
   m_ObjectHideFlags: 0
