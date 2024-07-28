@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Dev.Scripts.Data;
+using _Dev.Scripts.Enums;
+using _Dev.Scripts.Factory;
 using _Dev.Scripts.GameUtilities;
-using _Dev.Scripts.Skills;
 using _Dev.Scripts.Systems.Game;
 
 namespace _Dev.Scripts.Managers
@@ -10,7 +11,8 @@ namespace _Dev.Scripts.Managers
     public class MatchManager : IManager
     {
         private InputManager _inputManager;
-        public static event Action<List<Cell>> OnCellsBlasted; 
+        
+        public static event Action<List<Cell>> OnCellsBlasted;
         
         public MatchManager()
         {
@@ -20,6 +22,7 @@ namespace _Dev.Scripts.Managers
         public void Initialize()
         {
             _inputManager = GameSystem.Instance.GetManager<InputManager>();
+            
             Subscribe();
         }
         
@@ -46,11 +49,11 @@ namespace _Dev.Scripts.Managers
             if (match.MatchSize < 2)
                 return;
 
-            if (cell.GetSkill() is not NoSkill)
+            if (cell.PossibleSkillCreationType != SkillType.None)
             {
                 match.Cells.Remove(cell);
                 var itemType = MatchUtility.GetSkillItemTypeByMatchSize(match.MatchSize);
-                var itemData = new ItemData(itemType, cell.ItemData.XCoord, cell.ItemData.YCoord);
+                var itemData = new ItemData(itemType, SkillFactory.CreateSkillBySkillType(cell.PossibleSkillCreationType), cell.ItemData.XCoord, cell.ItemData.YCoord);
                 cell.TransformTo(itemData);
             }
 

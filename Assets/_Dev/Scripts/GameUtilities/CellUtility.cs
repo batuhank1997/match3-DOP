@@ -2,7 +2,6 @@
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Skills;
 using UnityEngine;
-using ItemSkill = _Dev.Scripts.Data.ItemSkill;
 
 namespace _Dev.Scripts.GameUtilities
 {
@@ -18,21 +17,21 @@ namespace _Dev.Scripts.GameUtilities
             cell.ItemData = new ItemData(ItemType.Empty);
         }
         
-        public static ItemSkill GetItemSpecificationForBlast(byte blastSize)
+        public static SkillType GetSkillTypeByBlastSize(byte blastSize)
         {
             return blastSize switch
             {
-                1 => new NoSkill(),
-                2 => new NoSkill(),
-                3 => new BasicBomb(),
-                4 => new TwoDirectionalRocket(),
-                _ => new Disco(),
+                1 => SkillType.None,
+                2 => SkillType.None,
+                3 => SkillType.BasicBomb,
+                4 => SkillType.TwoDirectionalRocket,
+                _ => SkillType.Disco
             };
         }
         
         public static Sprite GetItemSpriteBySpecification(this Cell cell)
         {
-            var key = (cell.ItemData.ItemType, cell.GetSkill().SkillType);
+            var key = (cell.ItemData.ItemType, cell.PossibleSkillCreationType);
 
             if (!SpriteContainer.TryGetSpecificSprite(key, out var sprite))
                 return SpriteContainer.GetSpriteByItemType(cell.ItemData.ItemType);

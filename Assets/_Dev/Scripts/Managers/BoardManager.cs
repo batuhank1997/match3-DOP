@@ -83,7 +83,7 @@ namespace _Dev.Scripts.Managers
             if (cell == targetCell) return;
 
             cell.ItemData = new ItemData(ItemType.Empty);
-            cell.RemoveSkill();
+            cell.PossibleSkillCreationType = SkillType.None;
             
             cell.ItemDistance.Reset();
         }
@@ -101,7 +101,7 @@ namespace _Dev.Scripts.Managers
                 BoardUtility.GetCell(cell.Coordinates.x, cell.Coordinates.y, out var spawnCell);
                 spawnCell.ItemData = ItemFactory.CreateRandomItem(); //TODO :::: Create a algorithm for creating items to not lock the game
                 spawnCell.ItemDistance.Set(offset * 2);
-                spawnCell.RemoveSkill();
+                cell.PossibleSkillCreationType = SkillType.None;
                 FallItem(spawnCell);
             }
             
@@ -118,7 +118,7 @@ namespace _Dev.Scripts.Managers
                     
                     if (matchData.MatchSize <= 1)
                     {
-                        cell.RemoveSkill();
+                        cell.PossibleSkillCreationType = SkillType.None;
                         continue;
                     }
                     
