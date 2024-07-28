@@ -10,5 +10,10 @@
         Yellow = 4,
         Purple = 5,
         Pink = 6,
+        
+        //Skills
+        BasicBomb = 7,
+        TwoDirectionalRocket = 8,
+        Disco = 9,
     }
 }

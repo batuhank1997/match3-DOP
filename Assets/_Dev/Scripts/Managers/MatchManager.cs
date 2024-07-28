@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.GameUtilities;
-using _Dev.Scripts.Logic;
+using _Dev.Scripts.Skills;
 using _Dev.Scripts.Systems.Game;
 
 namespace _Dev.Scripts.Managers
@@ -41,10 +41,18 @@ namespace _Dev.Scripts.Managers
 
         private static void OnClickOnCell(Cell cell)
         {
-            var match = MatchSearcher.SearchMatch(cell);
+            var match = MatchUtility.MatchSearcher.SearchMatch(cell);
 
             if (match.MatchSize < 2)
                 return;
+
+            if (cell.GetSkill() is not NoSkill)
+            {
+                match.Cells.Remove(cell);
+                var itemType = MatchUtility.GetSkillItemTypeByMatchSize(match.MatchSize);
+                var itemData = new ItemData(itemType, cell.ItemData.XCoord, cell.ItemData.YCoord);
+                cell.TransformTo(itemData);
+            }
 
             foreach (var matchCell in match.Cells)
                 matchCell.BlastCell();

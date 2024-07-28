@@ -6,7 +6,6 @@ using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Factory;
 using _Dev.Scripts.GameUtilities;
-using _Dev.Scripts.Logic;
 using _Dev.Scripts.Systems.Game;
 using _Dev.Scripts.Systems.ServiceLocator;
 using UnityEngine;
@@ -115,7 +114,7 @@ namespace _Dev.Scripts.Managers
             {
                 foreach (var cell in cells)
                 {
-                    var matchData = MatchSearcher.SearchMatch(cell);
+                    var matchData = MatchUtility.MatchSearcher.SearchMatch(cell);
                     
                     if (matchData.MatchSize <= 1)
                     {

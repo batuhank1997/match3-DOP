@@ -1,5 +1,4 @@
 ﻿using _Dev.Scripts.GameUtilities;
-using _Dev.Scripts.Logic;
 using _Dev.Scripts.Skills;
 using UnityEngine;
 
@@ -42,10 +41,15 @@ namespace _Dev.Scripts.Data
         {
             ItemSkill = new NoSkill();
         }
+        
+        public void TransformTo(ItemData newItemData)
+        {
+            ItemData = newItemData;
+        }
 
         public void UpdateForPossibleMatch()
         {
-            var matchData = MatchSearcher.SearchMatch(this);
+            var matchData = MatchUtility.MatchSearcher.SearchMatch(this);
             if (matchData.MatchSize <= 1) return;
                     
             var specification = CellUtility.GetItemSpecificationForBlast(matchData.MatchSize);
