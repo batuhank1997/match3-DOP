@@ -10,6 +10,7 @@ using _Dev.Scripts.Logic;
 using _Dev.Scripts.Systems.Game;
 using _Dev.Scripts.Systems.ServiceLocator;
 using UnityEngine;
+using ItemSkill = _Dev.Scripts.Data.ItemSkill;
 
 namespace _Dev.Scripts.Managers
 {
@@ -83,7 +84,7 @@ namespace _Dev.Scripts.Managers
             if (cell == targetCell) return;
 
             cell.ItemData = new ItemData(ItemType.Empty);
-            cell.ItemSpecification = new ItemSpecification(ItemSkill.None);
+            cell.RemoveSkill();
             
             cell.ItemDistance.Reset();
         }
@@ -101,7 +102,7 @@ namespace _Dev.Scripts.Managers
                 BoardUtility.GetCell(cell.Coordinates.x, cell.Coordinates.y, out var spawnCell);
                 spawnCell.ItemData = ItemFactory.CreateRandomItem(); //TODO :::: Create a algorithm for creating items to not lock the game
                 spawnCell.ItemDistance.Set(offset * 2);
-                spawnCell.ItemSpecification = new ItemSpecification(ItemSkill.None);
+                spawnCell.RemoveSkill();
                 FallItem(spawnCell);
             }
             
@@ -114,14 +115,11 @@ namespace _Dev.Scripts.Managers
             {
                 foreach (var cell in cells)
                 {
-                    /*if (matchedCells.Contains(cell))
-                        continue;*/
-
                     var matchData = MatchSearcher.SearchMatch(cell);
                     
                     if (matchData.MatchSize <= 1)
                     {
-                        cell.ItemSpecification = new ItemSpecification(ItemSkill.None);
+                        cell.RemoveSkill();
                         continue;
                     }
                     

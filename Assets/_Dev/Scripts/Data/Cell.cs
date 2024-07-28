@@ -1,6 +1,5 @@
 ﻿using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.Logic;
-using _Dev.Scripts.Managers;
 using UnityEngine;
 
 namespace _Dev.Scripts.Data
@@ -10,27 +9,37 @@ namespace _Dev.Scripts.Data
         public readonly Vector2Int Coordinates;
         public ItemData ItemData;
         public readonly ItemDistance ItemDistance;
-        public ItemSpecification ItemSpecification;
+        private ItemSkill ItemSkill;
 
         public Cell(ItemData itemData, Vector2Int coordinates)
         {
             ItemData = itemData;
             Coordinates = coordinates;
-            ItemSpecification = ItemSpecification.Invalid;
+            ItemSkill = new NoSkill();
             ItemDistance = new ItemDistance(InGameConstants.Item.StartingItemDistance);
         }
         
-        public Cell(ItemData itemData, ItemSpecification itemSpecification, Vector2Int coordinates)
+        public Cell(ItemData itemData, ItemSkill itemSkill, Vector2Int coordinates)
         {
             ItemData = itemData;
             Coordinates = coordinates;
-            ItemSpecification = itemSpecification;
+            ItemSkill = itemSkill;
             ItemDistance = new ItemDistance(InGameConstants.Item.StartingItemDistance);
         }
         
-        public void AddSpecification(ItemSpecification itemSpecification)
+        public void SetSkill(ItemSkill itemSkill)
         {
-            ItemSpecification = itemSpecification;
+            ItemSkill = itemSkill;
+        }
+        
+        public ItemSkill GetSkill()
+        {
+            return ItemSkill;
+        }
+        
+        public void RemoveSkill()
+        {
+            ItemSkill = new NoSkill();
         }
 
         public void UpdateForPossibleMatch()
@@ -39,10 +48,10 @@ namespace _Dev.Scripts.Data
             if (matchData.MatchSize <= 1) return;
                     
             var specification = CellUtility.GetItemSpecificationForBlast(matchData.MatchSize);
-            AddSpecification(specification);
+            SetSkill(specification);
                 
             foreach (var matchedCell in matchData.Cells)
-                matchedCell.AddSpecification(specification);
+                matchedCell.SetSkill(specification);
         }
     }
 }

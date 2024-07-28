@@ -1,6 +1,6 @@
 ﻿namespace _Dev.Scripts.Enums
 {
-    public enum ItemSkill
+    public enum SkillType
     {
         Invalid = -1,
         None,

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using _Dev.Providers;
-using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Systems.ServiceLocator;
 using UnityEngine;
+using ItemSkill = _Dev.Scripts.Enums.SkillType;
 
 namespace _Dev.Scripts
 {
