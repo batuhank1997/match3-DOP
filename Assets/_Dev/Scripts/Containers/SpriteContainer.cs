@@ -49,6 +49,9 @@ namespace _Dev.Scripts
             { ItemType.Yellow, _spriteProvider.Yellow },
             { ItemType.Purple, _spriteProvider.Purple },
             { ItemType.Pink, _spriteProvider.Pink },
+            { ItemType.BasicBomb, _spriteProvider.BasicBomb },
+            { ItemType.TwoDirectionalRocket, _spriteProvider.TwoDirectionalRocket },
+            { ItemType.Disco, _spriteProvider.Disco },
         };
 
         private static readonly Dictionary<ItemType, SpriteId> _spriteIdByItemType = new()

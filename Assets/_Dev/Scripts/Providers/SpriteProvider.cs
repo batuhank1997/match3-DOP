@@ -15,7 +15,14 @@ namespace _Dev.Providers
         public Sprite Purple;
         public Sprite Pink;
         
+        //Skill Item sprites
+        
+        public Sprite BasicBomb;
+        public Sprite TwoDirectionalRocket;
+        public Sprite Disco;
+        
         //Specific sprites
+        
         public Sprite RedBasicBomb;
         public Sprite RedTwoDirectionalRocket;
         public Sprite RedDisco;
