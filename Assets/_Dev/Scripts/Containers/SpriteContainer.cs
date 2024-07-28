@@ -3,7 +3,6 @@ using _Dev.Providers;
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Systems.ServiceLocator;
 using UnityEngine;
-using ItemSkill = _Dev.Scripts.Enums.SkillType;
 
 namespace _Dev.Scripts
 {
@@ -64,29 +63,29 @@ namespace _Dev.Scripts
             { ItemType.Pink, SpriteId.Pink },
         };
 
-        private static readonly Dictionary<(ItemType, ItemSkill), SpriteId> _specificItemSpriteByType = new()
+        private static readonly Dictionary<(ItemType, SkillType), SpriteId> _specificItemSpriteByType = new()
         {
-            { (ItemType.Red, ItemSkill.BasicBomb), SpriteId.RedBasicBomb },
-            { (ItemType.Red, ItemSkill.TwoDirectionalRocket), SpriteId.RedTwoDirectionalRocket },
-            { (ItemType.Red, ItemSkill.Disco), SpriteId.RedDisco },
-            { (ItemType.Blue, ItemSkill.BasicBomb), SpriteId.BlueBasicBomb },
-            { (ItemType.Blue, ItemSkill.TwoDirectionalRocket), SpriteId.BlueTwoDirectionalRocket },
-            { (ItemType.Blue, ItemSkill.Disco), SpriteId.BlueDisco },
-            { (ItemType.Green, ItemSkill.BasicBomb), SpriteId.GreenBasicBomb },
-            { (ItemType.Green, ItemSkill.TwoDirectionalRocket), SpriteId.GreenTwoDirectionalRocket },
-            { (ItemType.Green, ItemSkill.Disco), SpriteId.GreenDisco },
-            { (ItemType.Yellow, ItemSkill.BasicBomb), SpriteId.YellowBasicBomb },
-            { (ItemType.Yellow, ItemSkill.TwoDirectionalRocket), SpriteId.YellowTwoDirectionalRocket },
-            { (ItemType.Yellow, ItemSkill.Disco), SpriteId.YellowDisco },
-            { (ItemType.Purple, ItemSkill.BasicBomb), SpriteId.PurpleBasicBomb },
-            { (ItemType.Purple, ItemSkill.TwoDirectionalRocket), SpriteId.PurpleTwoDirectionalRocket },
-            { (ItemType.Purple, ItemSkill.Disco), SpriteId.PurpleDisco },
-            { (ItemType.Pink, ItemSkill.BasicBomb), SpriteId.PinkBasicBomb },
-            { (ItemType.Pink, ItemSkill.TwoDirectionalRocket), SpriteId.PinkTwoDirectionalRocket },
-            { (ItemType.Pink, ItemSkill.Disco), SpriteId.PinkDisco }
+            { (ItemType.Red, SkillType.BasicBomb), SpriteId.RedBasicBomb },
+            { (ItemType.Red, SkillType.TwoDirectionalRocket), SpriteId.RedTwoDirectionalRocket },
+            { (ItemType.Red, SkillType.Disco), SpriteId.RedDisco },
+            { (ItemType.Blue, SkillType.BasicBomb), SpriteId.BlueBasicBomb },
+            { (ItemType.Blue, SkillType.TwoDirectionalRocket), SpriteId.BlueTwoDirectionalRocket },
+            { (ItemType.Blue, SkillType.Disco), SpriteId.BlueDisco },
+            { (ItemType.Green, SkillType.BasicBomb), SpriteId.GreenBasicBomb },
+            { (ItemType.Green, SkillType.TwoDirectionalRocket), SpriteId.GreenTwoDirectionalRocket },
+            { (ItemType.Green, SkillType.Disco), SpriteId.GreenDisco },
+            { (ItemType.Yellow, SkillType.BasicBomb), SpriteId.YellowBasicBomb },
+            { (ItemType.Yellow, SkillType.TwoDirectionalRocket), SpriteId.YellowTwoDirectionalRocket },
+            { (ItemType.Yellow, SkillType.Disco), SpriteId.YellowDisco },
+            { (ItemType.Purple, SkillType.BasicBomb), SpriteId.PurpleBasicBomb },
+            { (ItemType.Purple, SkillType.TwoDirectionalRocket), SpriteId.PurpleTwoDirectionalRocket },
+            { (ItemType.Purple, SkillType.Disco), SpriteId.PurpleDisco },
+            { (ItemType.Pink, SkillType.BasicBomb), SpriteId.PinkBasicBomb },
+            { (ItemType.Pink, SkillType.TwoDirectionalRocket), SpriteId.PinkTwoDirectionalRocket },
+            { (ItemType.Pink, SkillType.Disco), SpriteId.PinkDisco }
         };
 
-        public static bool TryGetSpecificSprite((ItemType type, ItemSkill skill) key, out Sprite sprite)
+        public static bool TryGetSpecificSprite((ItemType type, SkillType skill) key, out Sprite sprite)
         {
             var id = GetSpriteIdByItemType(key.type);
 
