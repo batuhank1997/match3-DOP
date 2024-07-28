@@ -1,5 +1,6 @@
 ﻿using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.Skills;
 using UnityEngine;
 using ItemSkill = _Dev.Scripts.Data.ItemSkill;
 

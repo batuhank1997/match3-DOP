@@ -1,5 +1,6 @@
 ﻿using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.Logic;
+using _Dev.Scripts.Skills;
 using UnityEngine;
 
 namespace _Dev.Scripts.Data
