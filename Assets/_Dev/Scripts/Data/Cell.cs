@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using _Dev.Scripts.GameUtilities;
+using _Dev.Scripts.Logic;
+using _Dev.Scripts.Managers;
+using UnityEngine;
 
 namespace _Dev.Scripts.Data
 {
@@ -28,6 +31,18 @@ namespace _Dev.Scripts.Data
         public void AddSpecification(ItemSpecification itemSpecification)
         {
             ItemSpecification = itemSpecification;
+        }
+
+        public void UpdateForPossibleMatch()
+        {
+            var matchData = MatchSearcher.SearchMatch(this);
+            if (matchData.MatchSize <= 1) return;
+                    
+            var specification = CellUtility.GetItemSpecificationForBlast(matchData.MatchSize);
+            AddSpecification(specification);
+                
+            foreach (var matchedCell in matchData.Cells)
+                matchedCell.AddSpecification(specification);
         }
     }
 }

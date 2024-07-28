@@ -6,6 +6,7 @@ using _Dev.Scripts.Utility;
 
 namespace _Dev.Scripts.Systems.Game
 {
+    //TODO :::: add script order here
     public class GameSystem : Singleton<GameSystem>
     {
         private readonly Dictionary<string, IManager> _managers = new Dictionary<string, IManager>();

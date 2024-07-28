@@ -83,6 +83,8 @@ namespace _Dev.Scripts.Managers
             if (cell == targetCell) return;
 
             cell.ItemData = new ItemData(ItemType.Empty);
+            cell.ItemSpecification = new ItemSpecification(ItemSkill.None);
+            
             cell.ItemDistance.Reset();
         }
         
@@ -108,8 +110,6 @@ namespace _Dev.Scripts.Managers
         
         private void SeekAndSetForPossibleSpecificBlast()
         {
-            var matchedCells = new List<Cell>();
-            
             foreach (var cells in BoardData.Cells)
             {
                 foreach (var cell in cells)
@@ -118,23 +118,15 @@ namespace _Dev.Scripts.Managers
                         continue;*/
 
                     var matchData = MatchSearcher.SearchMatch(cell);
-                    if (matchData.MatchSize <= 1) continue;
                     
-                    matchedCells.AddRange(matchData.Cells);
-                    UpdateCellDataForSpecificMatch(matchData);
+                    if (matchData.MatchSize <= 1)
+                    {
+                        cell.ItemSpecification = new ItemSpecification(ItemSkill.None);
+                        continue;
+                    }
+                    
+                    cell.UpdateForPossibleMatch();
                 }
-            }
-        }
-        
-        private static void UpdateCellDataForSpecificMatch(MatchData matchData)
-        {
-            foreach (var cell in matchData.Cells)
-            {
-                var specification = CellUtility.GetItemSpecificationForBlast(matchData.MatchSize);
-                cell.AddSpecification(specification);
-                
-                foreach (var matchedCell in matchData.Cells)
-                    matchedCell.AddSpecification(specification);
             }
         }
     }
