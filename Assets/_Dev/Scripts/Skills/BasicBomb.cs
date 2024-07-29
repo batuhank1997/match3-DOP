@@ -10,9 +10,9 @@ namespace _Dev.Scripts.Skills
     {
         public SkillType SkillType => SkillType.BasicBomb;
         
-        public IEnumerable<Cell> GetBlastableCells(int x, int y)
+        public IEnumerable<Cell> GetBlastableCells(Cell centerCell)
         {
-            var firstNeighbours = BoardUtility.GetAllNeighbours(x, y);
+            var firstNeighbours = BoardUtility.GetAllNeighbours(centerCell);
             return firstNeighbours;
         }
     }

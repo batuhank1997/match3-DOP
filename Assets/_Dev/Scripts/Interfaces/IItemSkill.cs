@@ -7,6 +7,6 @@ namespace _Dev.Scripts.Interfaces
     public interface IItemSkill
     {
        SkillType SkillType { get; }
-       IEnumerable<Cell> GetBlastableCells(int x, int y);
+       IEnumerable<Cell> GetBlastableCells(Cell centerCell);
     }
 }

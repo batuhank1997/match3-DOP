@@ -9,7 +9,7 @@ namespace _Dev.Scripts.Skills
     {
         public SkillType SkillType => SkillType.Disco;
         
-        public IEnumerable<Cell> GetBlastableCells(int x, int y)
+        public IEnumerable<Cell> GetBlastableCells(Cell centerCell)
         {
             throw new System.NotImplementedException();
         }

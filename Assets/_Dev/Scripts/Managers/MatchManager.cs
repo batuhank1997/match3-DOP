@@ -45,36 +45,29 @@ namespace _Dev.Scripts.Managers
 
         private static void OnClickOnCell(Cell cell)
         {
-            var match = MatchUtility.MatchSearcher.SearchMatch(cell);
-
-            if (cell.ItemData.Skill is not NoSkill)
-            {
-                var blastableCells = cell.ItemData.Skill.GetBlastableCells(cell.ItemData.XCoord, cell.ItemData.YCoord);
-                var cellsToBlast = new List<Cell>(blastableCells);
-                cellsToBlast.Add(cell);
-                
-                foreach (var blastableCell in cellsToBlast)
-                    blastableCell.BlastCell();
-                
-                OnCellsBlasted?.Invoke(cellsToBlast);
-                return;
-            }
-
-            if (match.MatchSize < 2)
-                return;
-
+            var blastableCells = cell.ItemData.Skill.GetBlastableCells(cell);
+            var cellsToBlast = new List<Cell>(blastableCells);
+            
             if (cell.PossibleSkillCreationType != SkillType.None)
             {
-                match.Cells.Remove(cell);
-                var itemType = MatchUtility.GetSkillItemTypeByMatchSize(match.MatchSize);
+                cellsToBlast.Remove(cell);
+                var itemType = MatchUtility.GetSkillItemTypeByMatchSize((byte)cellsToBlast.Count);
                 var itemData = new ItemData(itemType, SkillFactory.CreateSkillBySkillType(cell.PossibleSkillCreationType), cell.ItemData.XCoord, cell.ItemData.YCoord);
                 cell.TransformTo(itemData);
+                Blast(cellsToBlast);
+                return;
             }
-
-            foreach (var matchCell in match.Cells)
-                matchCell.BlastCell();
             
-            OnCellsBlasted?.Invoke(match.Cells);
+            cellsToBlast.Add(cell);
+            Blast(cellsToBlast);
+        }
+
+        private static void Blast(List<Cell> cellsToBlast)
+        {
+            foreach (var blastableCell in cellsToBlast)
+                blastableCell.BlastCell();
+            
+            OnCellsBlasted?.Invoke(cellsToBlast);
         }
     }
 }
