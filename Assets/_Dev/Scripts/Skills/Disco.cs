@@ -1,15 +1,17 @@
-﻿using _Dev.Scripts.Data;
+﻿using System.Collections.Generic;
+using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.Interfaces;
 
 namespace _Dev.Scripts.Skills
 {
-    public class Disco : ItemSkill
+    public readonly struct Disco : IItemSkill
     {
-        public override SkillType SkillType => SkillType.Disco;
+        public SkillType SkillType => SkillType.Disco;
         
-        public override void BlastWithSkill()
+        public IEnumerable<Cell> GetBlastableCells(int x, int y)
         {
-            // Do something
+            throw new System.NotImplementedException();
         }
     }
 }

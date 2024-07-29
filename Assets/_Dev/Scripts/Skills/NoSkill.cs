@@ -1,15 +1,17 @@
-﻿using _Dev.Scripts.Data;
+﻿using System.Collections.Generic;
+using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.Interfaces;
 
 namespace _Dev.Scripts.Skills
 {
-    public class NoSkill : ItemSkill
+    public readonly struct NoSkill : IItemSkill
     {
-        public override SkillType SkillType => SkillType.None;
-        
-        public override void BlastWithSkill()
+        public SkillType SkillType => SkillType.None;
+
+        public IEnumerable<Cell> GetBlastableCells(int x, int y)
         {
-            // Do something
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,15 +1,19 @@
-﻿using _Dev.Scripts.Data;
+﻿using System.Collections.Generic;
+using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.GameUtilities;
+using _Dev.Scripts.Interfaces;
 
 namespace _Dev.Scripts.Skills
 {
-    public class BasicBomb : ItemSkill
+    public readonly struct BasicBomb : IItemSkill
     {
-        public override SkillType SkillType => SkillType.BasicBomb;
+        public SkillType SkillType => SkillType.BasicBomb;
         
-        public override void BlastWithSkill()
+        public IEnumerable<Cell> GetBlastableCells(int x, int y)
         {
-            // Do something
+            var firstNeighbours = BoardUtility.GetAllNeighbours(x, y);
+            return firstNeighbours;
         }
     }
 }

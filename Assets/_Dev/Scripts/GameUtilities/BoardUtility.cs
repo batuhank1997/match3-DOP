@@ -58,6 +58,27 @@ namespace _Dev.Scripts.GameUtilities
             return neighbours;
         }
         
+        public static IEnumerable<Cell> GetAllNeighbours(int x, int y)
+        {
+            var neighbours = new List<Cell>();
+
+            var leftNeighbour = new Vector2Int(x - 1, y);
+            var rightNeighbour = new Vector2Int(x + 1, y);
+            var topNeighbour = new Vector2Int(x, y + 1);
+            var bottomNeighbour = new Vector2Int(x, y - 1);
+
+            if(GetCell(leftNeighbour.x, leftNeighbour.y, out var neighbourL))
+                neighbours.Add(neighbourL);
+            if(GetCell(rightNeighbour.x, rightNeighbour.y, out var neighbourR))
+                neighbours.Add(neighbourR);
+            if(GetCell(topNeighbour.x, topNeighbour.y, out var neighbourT))
+                neighbours.Add(neighbourT);
+            if(GetCell(bottomNeighbour.x, bottomNeighbour.y, out var neighbourB))
+                neighbours.Add(neighbourB);
+
+            return neighbours;
+        }
+        
         private static bool TryGetNeighbourByDirection(Cell cell, Vector2Int direction, out Cell neighbour)
         {
             var neighbourCoordinates = new Vector2Int(cell.Coordinates.x + direction.x, cell.Coordinates.y + direction.y);

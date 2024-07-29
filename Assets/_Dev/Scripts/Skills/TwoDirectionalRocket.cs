@@ -1,15 +1,17 @@
-﻿using _Dev.Scripts.Data;
+﻿using System.Collections.Generic;
+using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.Interfaces;
 
 namespace _Dev.Scripts.Skills
 {
-    public class TwoDirectionalRocket : ItemSkill
+    public readonly struct TwoDirectionalRocket : IItemSkill
     {
-        public override SkillType SkillType => SkillType.TwoDirectionalRocket;
+        public SkillType SkillType => SkillType.TwoDirectionalRocket;
         
-        public override void BlastWithSkill()
+        public IEnumerable<Cell> GetBlastableCells(int x, int y)
         {
-            // Do something
+            throw new System.NotImplementedException();
         }
     }
 }

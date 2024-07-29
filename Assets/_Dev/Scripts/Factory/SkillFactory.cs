@@ -1,12 +1,12 @@
-﻿using _Dev.Scripts.Data;
-using _Dev.Scripts.Enums;
+﻿using _Dev.Scripts.Enums;
+using _Dev.Scripts.Interfaces;
 using _Dev.Scripts.Skills;
 
 namespace _Dev.Scripts.Factory
 {
     public static class SkillFactory
     {
-        public static ItemSkill CreateSkillBySkillType(SkillType skillType)
+        public static IItemSkill CreateSkillBySkillType(SkillType skillType)
         {
             return skillType switch
             {

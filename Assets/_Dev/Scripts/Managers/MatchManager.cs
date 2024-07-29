@@ -4,6 +4,7 @@ using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
 using _Dev.Scripts.Factory;
 using _Dev.Scripts.GameUtilities;
+using _Dev.Scripts.Skills;
 using _Dev.Scripts.Systems.Game;
 
 namespace _Dev.Scripts.Managers
@@ -45,6 +46,19 @@ namespace _Dev.Scripts.Managers
         private static void OnClickOnCell(Cell cell)
         {
             var match = MatchUtility.MatchSearcher.SearchMatch(cell);
+
+            if (cell.ItemData.Skill is not NoSkill)
+            {
+                var blastableCells = cell.ItemData.Skill.GetBlastableCells(cell.ItemData.XCoord, cell.ItemData.YCoord);
+                var cellsToBlast = new List<Cell>(blastableCells);
+                cellsToBlast.Add(cell);
+                
+                foreach (var blastableCell in cellsToBlast)
+                    blastableCell.BlastCell();
+                
+                OnCellsBlasted?.Invoke(cellsToBlast);
+                return;
+            }
 
             if (match.MatchSize < 2)
                 return;

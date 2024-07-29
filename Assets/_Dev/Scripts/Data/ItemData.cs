@@ -1,4 +1,5 @@
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.Interfaces;
 using _Dev.Scripts.Skills;
 using Newtonsoft.Json;
 
@@ -11,7 +12,7 @@ namespace _Dev.Scripts.Data
         [JsonProperty(nameof(XCoord))] public readonly int XCoord;
         [JsonProperty(nameof(YCoord))] public readonly int YCoord;
         
-        public readonly ItemSkill Skill;
+        public readonly IItemSkill Skill;
         
         public ItemData(ItemType itemType)
         {
@@ -21,12 +22,12 @@ namespace _Dev.Scripts.Data
             YCoord = 0;
         }
         
-        public ItemData(ItemType itemType, ItemSkill itemSkill, int xCoord, int yCoord)
+        public ItemData(ItemType itemType, IItemSkill itemSkill, int xCoord, int yCoord)
         {
             ItemType = itemType;
             Skill = itemSkill;
-            XCoord = 0;
-            YCoord = 0;
+            XCoord = xCoord;
+            YCoord = yCoord;
         }
         
         [JsonConstructor]

@@ -9,7 +9,6 @@ using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.Systems.Game;
 using _Dev.Scripts.Systems.ServiceLocator;
 using UnityEngine;
-using ItemSkill = _Dev.Scripts.Data.ItemSkill;
 
 namespace _Dev.Scripts.Managers
 {
