@@ -44,13 +44,14 @@ namespace _Dev.Scripts.Managers
         private void HandleLeftClick()
         {
             if (!Input.GetMouseButtonDown(0)) return;
-            if (_boardManager.IsItemsStillMoving()) return;
 
             if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 return;
                 
             var cell = GetCellUnderCursor(_boardManager.BoardData);
+            
             if (cell == null) return;
+            if (cell.IsCellItemMoving()) return;
             
             OnClickOnCell?.Invoke(cell);
         }

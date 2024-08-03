@@ -11,6 +11,11 @@ namespace _Dev.Scripts.GameUtilities
         {
             return cell.ItemData.ItemType == ItemType.Empty;
         }
+        
+        public static bool IsCellItemMoving(this Cell cell)
+        {
+            return cell.ItemDistance.Value > InGameConstants.Item.StartingItemDistance;
+        }
 
         public static void BlastCell(this Cell cell)
         {
