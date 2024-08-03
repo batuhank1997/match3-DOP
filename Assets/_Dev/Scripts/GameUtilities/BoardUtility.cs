@@ -57,20 +57,6 @@ namespace _Dev.Scripts.GameUtilities
 
             return neighbours;
         }
-        
-        private static bool TryGetNeighbourByDirection(Cell cell, Vector2Int direction, out Cell neighbour)
-        {
-            var neighbourCoordinates = new Vector2Int(cell.Coordinates.x + direction.x, cell.Coordinates.y + direction.y);
-            
-            if (GetCell(neighbourCoordinates.x, neighbourCoordinates.y, out var n))
-            {
-                neighbour = n;
-                return true;
-            }
-
-            neighbour = null;
-            return false;
-        }
 
         public static Cell GetLastEmptyCellBelow(Cell cell)
         {
@@ -133,6 +119,20 @@ namespace _Dev.Scripts.GameUtilities
             }
             
             return emptyCells;
+        }
+        
+        private static bool TryGetNeighbourByDirection(Cell cell, Vector2Int direction, out Cell neighbour)
+        {
+            var neighbourCoordinates = new Vector2Int(cell.Coordinates.x + direction.x, cell.Coordinates.y + direction.y);
+            
+            if (GetCell(neighbourCoordinates.x, neighbourCoordinates.y, out var n))
+            {
+                neighbour = n;
+                return true;
+            }
+
+            neighbour = null;
+            return false;
         }
     }
 }
