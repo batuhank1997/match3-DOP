@@ -11,8 +11,8 @@ namespace _Dev.Scripts.Managers
     {
         private Camera _mainCamera;
         private BoardManager _boardManager;
-
         public event Action<Cell> OnClickOnCell;
+        public ushort TickingPriority => InGameConstants.Priority.Input;
         
         public InputManager()
         {
@@ -30,7 +30,7 @@ namespace _Dev.Scripts.Managers
         {
             OnClickOnCell = null;
         }
-      
+
         public void Tick(float time)
         {
             HandleInput();

@@ -35,6 +35,8 @@ namespace _Dev.Scripts.Systems.Game
         {
             foreach (var manager in _managers)
                 manager.Value.Initialize();
+            
+            UpdateHandler.Instance.SortUpdateOrder();
         }
         
         public void Dispose()

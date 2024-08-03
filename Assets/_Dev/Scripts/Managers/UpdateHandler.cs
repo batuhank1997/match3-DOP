@@ -9,6 +9,11 @@ namespace _Dev.Scripts.Managers
     {
         private readonly List<ITickOnUpdate> _tickingObjects = new List<ITickOnUpdate>();
 
+        public void SortUpdateOrder()
+        {
+            _tickingObjects.Sort((tick1, tick2) => tick1.TickingPriority.CompareTo(tick2.TickingPriority));
+        }
+
         public void OnDisable()
         {
             _tickingObjects.Clear();

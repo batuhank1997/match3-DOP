@@ -6,13 +6,15 @@ namespace _Dev.Scripts.Data
     public class ItemDistance : ITickOnUpdate
     {
         public float Value;
+        public ushort TickingPriority => InGameConstants.Priority.DistanceCalculation;
 
         public ItemDistance(float value)
         {
             Value = value;
             UpdateHandler.Instance.Register(this);
         }
-        
+
+
         public void Tick(float deltaTime)
         {
             Decrease(deltaTime);
