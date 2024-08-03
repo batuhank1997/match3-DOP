@@ -9,6 +9,7 @@ namespace _Dev.Scripts.Data
     public readonly struct ItemData
     {
         [JsonProperty(nameof(ItemType))] public readonly ItemType ItemType;
+        [JsonProperty(nameof(SkillItemType))] public readonly ItemType SkillItemType;
         [JsonProperty(nameof(XCoord))] public readonly int XCoord;
         [JsonProperty(nameof(YCoord))] public readonly int YCoord;
         
@@ -17,14 +18,16 @@ namespace _Dev.Scripts.Data
         public ItemData(ItemType itemType)
         {
             ItemType = itemType;
+            SkillItemType = itemType;
             Skill = new NoSkill();
             XCoord = 0;
             YCoord = 0;
         }
         
-        public ItemData(ItemType itemType, IItemSkill itemSkill, int xCoord, int yCoord)
+        public ItemData(ItemType itemType, ItemType skillItemType, IItemSkill itemSkill, int xCoord, int yCoord)
         {
             ItemType = itemType;
+            SkillItemType = skillItemType;
             Skill = itemSkill;
             XCoord = xCoord;
             YCoord = yCoord;
@@ -34,6 +37,7 @@ namespace _Dev.Scripts.Data
         public ItemData(ItemType itemType, int xCoord, int yCoord)
         {
             ItemType = itemType;
+            SkillItemType = itemType;
             Skill = new NoSkill();
             XCoord = xCoord;
             YCoord = yCoord;

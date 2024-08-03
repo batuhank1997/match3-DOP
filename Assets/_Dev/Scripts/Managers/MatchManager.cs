@@ -51,7 +51,7 @@ namespace _Dev.Scripts.Managers
             {
                 cellsToBlast.Remove(cell);
                 var itemType = MatchUtility.GetSkillItemTypeByMatchSize((byte)cellsToBlast.Count);
-                var itemData = new ItemData(itemType, SkillFactory.CreateSkillBySkillType(cell.PossibleSkillCreationType), cell.ItemData.XCoord, cell.ItemData.YCoord);
+                var itemData = new ItemData(itemType, cell.ItemData.ItemType, SkillFactory.CreateSkillBySkillType(cell.PossibleSkillCreationType), cell.ItemData.XCoord, cell.ItemData.YCoord);
                 cell.TransformTo(itemData);
                 Blast(cellsToBlast);
                 return;
