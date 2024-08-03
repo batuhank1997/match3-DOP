@@ -72,7 +72,7 @@ namespace _Dev.Scripts.Managers
             
             var pos = new Vector2((int)x, (int)y);
             
-            return BoardUtility.GetCell(pos, out var cell) ? cell : null;
+            return BoardUtility.TryGetCell(pos, out var cell) ? cell : null;
         }
     }
 }

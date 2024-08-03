@@ -20,7 +20,7 @@ namespace _Dev.Scripts.Skills
             
             for (var i = 0; i < _boardData.X - 1; i++)
             {
-                if (!BoardUtility.GetCell(centerCell.Coordinates.x + i, centerCell.Coordinates.y, out var cell))
+                if (!BoardUtility.TryGetCell(centerCell.Coordinates.x + i, centerCell.Coordinates.y, out var cell))
                     break;                    
 
                 cellList.Add(cell);
@@ -28,7 +28,7 @@ namespace _Dev.Scripts.Skills
             
             for (var i = centerCell.Coordinates.x; i >= 0; i--)
             {
-                if (!BoardUtility.GetCell(centerCell.Coordinates.x - i, centerCell.Coordinates.y, out var cell))
+                if (!BoardUtility.TryGetCell(centerCell.Coordinates.x - i, centerCell.Coordinates.y, out var cell))
                     break;                    
 
                 cellList.Add(cell);

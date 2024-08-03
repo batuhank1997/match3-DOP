@@ -83,7 +83,7 @@ namespace _Dev.Scripts.Managers
             
             foreach (var cell in emptyCells)
             {
-                BoardUtility.GetCell(cell.Coordinates.x, cell.Coordinates.y, out var spawnCell);
+                BoardUtility.TryGetCell(cell.Coordinates.x, cell.Coordinates.y, out var spawnCell);
                 spawnCell.ItemData = ItemFactory.CreateRandomItem(); //TODO :::: Create a algorithm for creating items to not lock the game
                 spawnCell.ItemDistance.Set(offset * 2);
                 cell.PossibleSkillCreationType = SkillType.None;
