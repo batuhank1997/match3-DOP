@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Dev.Scripts.Data;
 using _Dev.Scripts.Enums;
+using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.Interfaces;
 
 namespace _Dev.Scripts.Skills
@@ -11,7 +12,7 @@ namespace _Dev.Scripts.Skills
         
         public IEnumerable<Cell> GetBlastableCells(Cell centerCell)
         {
-            throw new System.NotImplementedException();
+            return BoardUtility.GetAllCellsByType(centerCell.ItemData.SkillItemType);
         }
     }
 }
