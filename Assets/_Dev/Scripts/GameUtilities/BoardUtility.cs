@@ -57,6 +57,39 @@ namespace _Dev.Scripts.GameUtilities
 
             return neighbours;
         }
+
+        public static IEnumerable<Cell> GetAllNeighboursWithDiagonal(Cell cell)
+        {
+            var neighbours = new List<Cell>();
+
+            var leftNeighbour = new Vector2Int(cell.Coordinates.x - 1, cell.Coordinates.y);
+            var rightNeighbour = new Vector2Int(cell.Coordinates.x + 1, cell.Coordinates.y);
+            var topNeighbour = new Vector2Int(cell.Coordinates.x, cell.Coordinates.y + 1);
+            var bottomNeighbour = new Vector2Int(cell.Coordinates.x, cell.Coordinates.y - 1);
+            var topLeftNeighbour = new Vector2Int(cell.Coordinates.x - 1, cell.Coordinates.y + 1);
+            var topRightNeighbour = new Vector2Int(cell.Coordinates.x + 1, cell.Coordinates.y + 1);
+            var bottomLeftNeighbour = new Vector2Int(cell.Coordinates.x - 1, cell.Coordinates.y - 1);
+            var bottomRightNeighbour = new Vector2Int(cell.Coordinates.x + 1, cell.Coordinates.y - 1);
+
+            if(TryGetCell(leftNeighbour.x, leftNeighbour.y, out var neighbourL))
+                neighbours.Add(neighbourL);
+            if(TryGetCell(rightNeighbour.x, rightNeighbour.y, out var neighbourR))
+                neighbours.Add(neighbourR);
+            if(TryGetCell(topNeighbour.x, topNeighbour.y, out var neighbourT))
+                neighbours.Add(neighbourT);
+            if(TryGetCell(bottomNeighbour.x, bottomNeighbour.y, out var neighbourB))
+                neighbours.Add(neighbourB);
+            if(TryGetCell(topLeftNeighbour.x, topLeftNeighbour.y, out var neighbourTL))
+                neighbours.Add(neighbourTL);
+            if(TryGetCell(topRightNeighbour.x, topRightNeighbour.y, out var neighbourTR))
+                neighbours.Add(neighbourTR);
+            if(TryGetCell(bottomLeftNeighbour.x, bottomLeftNeighbour.y, out var neighbourBL))
+                neighbours.Add(neighbourBL);
+            if(TryGetCell(bottomRightNeighbour.x, bottomRightNeighbour.y, out var neighbourBR))
+                neighbours.Add(neighbourBR);
+
+            return neighbours;
+        }
         
         public static IEnumerable<Cell> GetAllCellsByType(ItemType type)
         {

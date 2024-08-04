@@ -12,7 +12,7 @@ namespace _Dev.Scripts.Skills
         
         public IEnumerable<Cell> GetBlastableCells(Cell centerCell)
         {
-            var firstNeighbours = BoardUtility.GetAllNeighbours(centerCell);
+            var firstNeighbours = BoardUtility.GetAllNeighboursWithDiagonal(centerCell);
             return firstNeighbours;
         }
     }
