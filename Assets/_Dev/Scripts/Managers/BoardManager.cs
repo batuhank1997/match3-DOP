@@ -8,6 +8,7 @@ using _Dev.Scripts.Factory;
 using _Dev.Scripts.GameUtilities;
 using _Dev.Scripts.Systems.Game;
 using _Dev.Scripts.Systems.ServiceLocator;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace _Dev.Scripts.Managers
@@ -76,8 +77,9 @@ namespace _Dev.Scripts.Managers
         private IEnumerator FillBoardWithNewItems()
         {
             yield return _itemCreatingDelay;
-            
+
             var emptyCells = BoardUtility.GetEmptyCells();
+            if (emptyCells.IsNullOrEmpty()) yield break;
             var orderedCells = emptyCells.OrderBy(c => c.Coordinates.y).ToList();
             var offset = BoardData.Y - orderedCells[0].Coordinates.y;
             

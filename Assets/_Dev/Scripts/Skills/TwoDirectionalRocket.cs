@@ -16,25 +16,34 @@ namespace _Dev.Scripts.Skills
         
         public IEnumerable<Cell> GetBlastableCells(Cell centerCell)
         {
-            var cellList = new List<Cell>();
+            var cellSet = new HashSet<Cell>();
             
+            AddRightSide(cellSet, centerCell);
+            AddLeftSide(cellSet, centerCell);
+            
+            return new List<Cell>(cellSet);
+        }
+
+        private void AddRightSide(HashSet<Cell> cellsSet, Cell centerCell)
+        {
             for (var i = 0; i < _boardData.X - 1; i++)
             {
                 if (!BoardUtility.TryGetCell(centerCell.Coordinates.x + i, centerCell.Coordinates.y, out var cell))
                     break;                    
 
-                cellList.Add(cell);
+                cellsSet.Add(cell);
             }
-            
+        }
+        
+        private void AddLeftSide(HashSet<Cell> cellsSet, Cell centerCell)
+        {
             for (var i = centerCell.Coordinates.x; i >= 0; i--)
             {
                 if (!BoardUtility.TryGetCell(centerCell.Coordinates.x - i, centerCell.Coordinates.y, out var cell))
                     break;                    
 
-                cellList.Add(cell);
+                cellsSet.Add(cell);
             }
-            
-            return cellList;
         }
     }
 }
